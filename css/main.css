@@ -1,0 +1,31 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 12pt;
+    line-height: 1.4;
+    font-weight: 400;
+    font-family: 'Helvetica Neue', 'Myriad Pro', 'Segoe UI', Myriad, Helvetica, 'Lucida Grande', 'DejaVu Sans Condensed', 'Liberation Sans', 'Nimbus Sans L', Tahoma, Geneva, Arial, sans-serif;
+}
+
+body {
+    padding: 1em;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+section {
+    border-style: solid;
+    border-width: 1 px;
+    margin: 1em;
+    padding: 1em;
+}
+
+table {
+ padding: 1em;
+}
+
+td {
+    padding: 0.2em 1em;
+}
