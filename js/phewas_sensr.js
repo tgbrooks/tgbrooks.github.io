@@ -5,6 +5,7 @@ const app = new Vue({
         phecodes: [],
         three_components_results: null,
         predictive_tests: null,
+        phecode_details: null,
         config: {
             three_components: {
                 x_scale: 1000,
@@ -17,13 +18,15 @@ const app = new Vue({
         phenotype_results: function() {
             if (this.phenotype === null
                     || this.three_components_results === null
-                    || this.predictive_tests === null) {
+                    || this.predictive_tests === null
+                    || this.phecode_details === null) {
                 return null;
             }
 
             let results = {
                 three_components: this.three_components_results[this.phenotype],
                 predictive_tests:  this.predictive_tests[this.phenotype],
+                phecode: this.phecode_details[this.phenotype],
             };
             return results;
         },
@@ -41,6 +44,11 @@ const app = new Vue({
             .then(response => response.json())
             .then(function(json){
                 app.predictive_tests = json;
+            });
+        fetch("data/phecode_details.json")
+            .then(response => response.json())
+            .then(function(json){
+                app.phecode_details = json;
             });
     },
 
@@ -81,6 +89,9 @@ const app = new Vue({
         plot_results: function() {
             // Three components plot
             let three_comps = this.phenotype_results.three_components;
+            let phys_color = "rgb(0.4588235294117647, 0.4392156862745098, 0.7019607843137254)";
+            let sleep_color = "rgb(0.10588235294117647, 0.6196078431372549, 0.4666666666666667)";
+            let circ_color = "rgb(0.8509803921568627, 0.37254901960784315, 0.00784313725490196)";
             let plot = new Plotly.newPlot( "three_components_chart",
             [
                 {
@@ -89,7 +100,7 @@ const app = new Vue({
                     mode: 'markers',
                     type: 'scatter',
                     name: 'Physical Activity',
-                    marker: {size: 12, color: "red"},
+                    marker: {size: 12, color: phys_color},
                 },
                 {
                     x: [Math.abs(three_comps.sleep_eff)],
@@ -97,7 +108,7 @@ const app = new Vue({
                     mode: 'markers',
                     type: 'scatter',
                     name: 'Sleep',
-                    marker: {size: 12, color: "blue"},
+                    marker: {size: 12, color: sleep_color},
                 },
                 {
                     x: [Math.abs(three_comps.circ_eff)],
@@ -105,7 +116,7 @@ const app = new Vue({
                     mode: 'markers',
                     type: 'scatter',
                     name: 'Circadian Rhythm',
-                    marker: {size: 12, color: "green"},
+                    marker: {size: 12, color: circ_color},
                 },
 
                 // Error bars:
@@ -114,7 +125,7 @@ const app = new Vue({
                     y: [2, 2],
                     mode: 'lines',
                     type: 'scatter',
-                    line: {color: "red"},
+                    line: {color: phys_color},
                     showlegend: false,
                 },
                 {
@@ -122,7 +133,7 @@ const app = new Vue({
                     y: [1, 1],
                     mode: 'lines',
                     type: 'scatter',
-                    line: {color: "blue"},
+                    line: {color: sleep_color},
                     showlegend: false,
                 },
                 {
@@ -130,7 +141,7 @@ const app = new Vue({
                     y: [0, 0],
                     mode: 'lines',
                     type: 'scatter',
-                    line: {color: "green"},
+                    line: {color: circ_color},
                     showlegend: false,
                 },
             ],

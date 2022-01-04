@@ -36,7 +36,7 @@
                 <h2> Paper </h2>
                 <p id="citation">
                      <a href="https://www.medrxiv.org/content/10.1101/2021.12.09.21267558v1">Phenome-Wide Association Study of Actigraphy in the UK Biobank</a> </br>
-                     Brooks TG, Lahens NF, Grant GR, Yvette SI, FitzGerald GA, Skarke C, </br>
+                     Brooks TG, Lahens NF, Grant GR, Yvette SI, FitzGerald GA, Skarke C </br>
                      <a href="https://www.medrxiv.org/content/10.1101/2021.12.09.21267558v1">medRxiv 2021.12.09.21267558</a>; doi: <a href="https://doi.org/10.1101/2021.12.09.21267558">https://doi.org/10.1101/2021.12.09.21267558</a> </br>
                      2020.
                  </p>
@@ -59,67 +59,79 @@
                 <p>
                     Phenotypes were categorized according to <a href="https://phewascatalog.org/phecodes">PheCODE v1.2</a>.
                     Select a phenotype below to explore results related to it.
+                </p>
 
-                    <div id="app">
+                <div id="app">
 
-                        <select name="phenotype" v-model:value="phenotype">
-                            <option v-for="phecode in phecodes" v-bind:value="phecode" v-bind:key="phecode">
-                                {{phecode}}
-                            </option >
-                        </select>
+                    <select name="phenotype" v-model:value="phenotype">
+                        <option v-for="phecode in phecodes" v-bind:value="phecode" v-bind:key="phecode">
+                            {{phecode}}
+                        </option >
+                    </select>
 
-                        <div v-if="phenotype_results !== null">
-                            <h3> {{phenotype}} </h3>
+                    <div v-if="phenotype_results !== null">
+                        <h3> {{phenotype}} </h3>
 
-                            <h4> Activity Components </h4>
-                            <p>
-                                Since actigraphy captures multiple mutually overlapping measures, we modelled phenotypes by three activity components: physical activity (average activity levels), sleep quality (sleep efficiency), and diurnal rhythms (relative amplitude of wrist temperature).
-                                P-values give significance of the component in a logistic model of case/control status, above and beyond the other two components and controls for covariates.
-                                The overall p-value gives significance of the inclusion of all three parameters.
-                                <!-- TODO describe effect sizes -->
-                            </p>
-                            <div style="display:flex; align-items: center">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th> Component </th>
-                                            <th> p-value </th>
-                                            <th> Effect size </th>
-                                        </tr>
-                                    </thead>
-                                    <tr> <td> Overall </td> <td> {{fmt_p(phenotype_results.three_components.overall_p)}} </td> <td> N/A </td> </tr>
-                                    <tr> <td> Physical Activity </td> <td> {{fmt_p(phenotype_results.three_components.physical_p)}} </td> <td> {{fmt(phenotype_results.three_components.physical_eff)}} </td> </tr>
-                                    <tr> <td> Sleep Quality </td> <td> {{fmt_p(phenotype_results.three_components.sleep_p)}} </td> <td> {{fmt(phenotype_results.three_components.sleep_eff)}} </td> </tr>
-                                    <tr> <td> Diurnal Rhythms </td> <td> {{fmt_p(phenotype_results.three_components.circ_p)}} </td> <td> {{fmt(phenotype_results.three_components.circ_eff)}} </td> </tr>
-                                </table>
-
-                                <div id='three_components_chart' style="width:500px; height:250px"> </div>
-                            </div>
-
-                            <h4> Do diurnal rhythms predict {{phenotype}}?</h4>
-                            <p>
-                                To determine if diurnal rhythms predict later diagnosis with the phenotypes, the individuals who had no record of the phenotype at the time of actigraphy measurement were selected.
-                                Among these, the phenotype case/control status was modelled through a Cox proportional hazards model with rhythm robustness (wrist temperature relative amplitude) as a factor.
-                            </p>
+                        <h4> Activity Components </h4>
+                        <p>
+                            Since actigraphy captures multiple mutually overlapping measures, we modelled phenotypes by three activity components: physical activity (average activity levels), sleep quality (sleep efficiency), and diurnal rhythms (relative amplitude of wrist temperature).
+                            P-values give significance of the component in a logistic model of case/control status, above and beyond the other two components and controls for covariates.
+                            The overall p-value gives significance of the inclusion of all three parameters.
+                            <!-- TODO describe effect sizes -->
+                        </p>
+                        <div style="display:flex; align-items: center">
                             <table>
                                 <thead>
                                     <tr>
+                                        <th> Component </th>
                                         <th> p-value </th>
-                                        <th> log Hazard Ratio (95% CI) <br> per SD </th>
-                                        <th> Incidence Rate Increase (95% CI) <br> For 2 SD worse rhythms</th>
+                                        <th> Effect size </th>
                                     </tr>
                                 </thead>
-                                <tr>
-                                    <td> {{fmt_p(phenotype_results.predictive_tests.p)}} </td>
-                                    <td> {{fmt_ci(phenotype_results.predictive_tests.std_logHR, phenotype_results.predictive_tests.std_logHR_se)}}</td>
-                                    <td> {{fmt(Math.exp(2*phenotype_results.predictive_tests.std_logHR)*100-100)}}% {{fmt_range(Math.exp(2*(phenotype_results.predictive_tests.std_logHR - 1.96*phenotype_results.predictive_tests.std_logHR_se))*100-100, Math.exp(2*(phenotype_results.predictive_tests.std_logHR + 2 * 1.96*phenotype_results.predictive_tests.std_logHR_se))*100-100)}}</td>
-                                </tr>
+                                <tr> <td> Overall </td> <td> {{fmt_p(phenotype_results.three_components.overall_p)}} </td> <td> N/A </td> </tr>
+                                <tr> <td> Physical Activity </td> <td> {{fmt_p(phenotype_results.three_components.physical_p)}} </td> <td> {{fmt(phenotype_results.three_components.physical_eff)}} </td> </tr>
+                                <tr> <td> Sleep Quality </td> <td> {{fmt_p(phenotype_results.three_components.sleep_p)}} </td> <td> {{fmt(phenotype_results.three_components.sleep_eff)}} </td> </tr>
+                                <tr> <td> Diurnal Rhythms </td> <td> {{fmt_p(phenotype_results.three_components.circ_p)}} </td> <td> {{fmt(phenotype_results.three_components.circ_eff)}} </td> </tr>
                             </table>
-                            <p> There were {{phenotype_results.predictive_tests.N_cases}} cases and {{phenotype_results.predictive_tests.N_controls}} controls included. </p>
 
+                            <div id='three_components_chart' style="width:500px; height:250px"> </div>
                         </div>
+
+                        <h4> Do diurnal rhythms predict {{phenotype}}?</h4>
+                        <p>
+                            To determine if diurnal rhythms predict later diagnosis with the phenotypes, the individuals who had no record of the phenotype at the time of actigraphy measurement were selected.
+                            Among these, the phenotype case/control status was modelled through a Cox proportional hazards model with rhythm robustness (wrist temperature relative amplitude) as a factor.
+                        </p>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th> p-value </th>
+                                    <th> log Hazard Ratio (95% CI) <br> per SD </th>
+                                    <th> Incidence Rate Increase (95% CI) <br> For 2 SD worse rhythms</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td> {{fmt_p(phenotype_results.predictive_tests.p)}} </td>
+                                <td> {{fmt_ci(phenotype_results.predictive_tests.std_logHR, phenotype_results.predictive_tests.std_logHR_se)}}</td>
+                                <td> {{fmt(Math.exp(2*phenotype_results.predictive_tests.std_logHR)*100-100)}}% {{fmt_range(Math.exp(2*(phenotype_results.predictive_tests.std_logHR - 1.96*phenotype_results.predictive_tests.std_logHR_se))*100-100, Math.exp(2*(phenotype_results.predictive_tests.std_logHR + 2 * 1.96*phenotype_results.predictive_tests.std_logHR_se))*100-100)}}</td>
+                            </tr>
+                        </table>
+                        <p> There were {{phenotype_results.predictive_tests.N_cases}} cases and {{phenotype_results.predictive_tests.N_controls}} controls included. </p>
+
+                        <h4> PheCODE Details </h4>
+
+                        <p> Diagnoses of {{phenotype}} were derived from the <a href="https://phewascatalog.org/phecodes">PheCODE</a> {{phenotype_results.phecode.phecode}}. This includes the following sub-PheCODEs:</p>
+                        <div class="list">{{phenotype_results.phecode.phecodes.split(";").join(', ')}}</div>
+                        <p> From ICD10 codes, {{phenotype_results.phecode.icd10_counts_cases}} cases were identified from the codes:</p>
+                        <div class="list">{{phenotype_results.phecode.ICD10_codes.split(";").join(', ')}}</div>
+                        <p> From ICD9 codes, {{phenotype_results.phecode.icd9_counts_cases}} cases were identified from the codes: </p>
+                        <div class="list">{{phenotype_results.phecode.ICD9_codes.split(";").join(', ')}}</div>
+                        <p> From self-reported conditions during the initial assessment interview, {{phenotype_results.phecode.self_report_counts_cases}} cases were identified from the following conditions:</p>
+                        <div class="list">{{phenotype_results.phecode.self_reported_condition_codes.split(';').join(', ')}}. </div>
+
                     </div>
-                </p>
+                </div>
+
             </section>
         </div>
     </body>

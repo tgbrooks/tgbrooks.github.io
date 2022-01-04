@@ -29,3 +29,9 @@ table {
 td {
     padding: 0.4em 1em;
 }
+
+.list {
+    overflow: auto;
+    max-height: 4rem;
+    max-width: 600px;
+}

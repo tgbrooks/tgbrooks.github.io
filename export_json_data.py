@@ -22,3 +22,7 @@ for file in files:
     out_file = out_dir / f"{file['filename']}.json"
     df = pandas.read_csv(in_file, sep="\t", index_col=index_col)
     df.to_json(out_file, orient="index")
+
+# Do the phecode details
+df = pandas.read_excel(data_dir/"results.xlsx", sheet_name="PheCODEs", index_col="Meaning")
+df.to_json(out_dir/"phecode_details.json", orient="index")
