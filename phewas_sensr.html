@@ -24,6 +24,7 @@
         <link rel="stylesheet" href="css/main.css">
 
         <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js" defer></script>
+        <script src="https://cdn.plot.ly/plotly-2.8.3.min.js"></script>
         <script src="js/phewas_sensr.js" defer></script>
     </head>
 
@@ -60,7 +61,7 @@
                     Select a phenotype below to explore results related to it.
 
                     <div id="app">
-                        
+
                         <select name="phenotype" v-model:value="phenotype">
                             <option v-for="phecode in phecodes" v-bind:value="phecode" v-bind:key="phecode">
                                 {{phecode}}
@@ -77,19 +78,23 @@
                                 The overall p-value gives significance of the inclusion of all three parameters.
                                 <!-- TODO describe effect sizes -->
                             </p>
-                            <table>
-                                <thead> 
-                                    <tr>
-                                        <th> Component </th>
-                                        <th> p-value </th>
-                                        <th> Effect size </th>
-                                    </tr>
-                                </thead>
-                                <tr> <td> Overall </td> <td> {{fmt_p(phenotype_results.three_components.overall_p)}} </td> <td> N/A </td> </tr>
-                                <tr> <td> Physical Activity </td> <td> {{fmt_p(phenotype_results.three_components.physical_p)}} </td> <td> {{fmt(phenotype_results.three_components.physical_eff)}} </td> </tr>
-                                <tr> <td> Sleep Quality </td> <td> {{fmt_p(phenotype_results.three_components.sleep_p)}} </td> <td> {{fmt(phenotype_results.three_components.sleep_eff)}} </td> </tr>
-                                <tr> <td> Diurnal Rhythms </td> <td> {{fmt_p(phenotype_results.three_components.circ_p)}} </td> <td> {{fmt(phenotype_results.three_components.circ_eff)}} </td> </tr>
-                            </table>
+                            <div style="display:flex; align-items: center">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th> Component </th>
+                                            <th> p-value </th>
+                                            <th> Effect size </th>
+                                        </tr>
+                                    </thead>
+                                    <tr> <td> Overall </td> <td> {{fmt_p(phenotype_results.three_components.overall_p)}} </td> <td> N/A </td> </tr>
+                                    <tr> <td> Physical Activity </td> <td> {{fmt_p(phenotype_results.three_components.physical_p)}} </td> <td> {{fmt(phenotype_results.three_components.physical_eff)}} </td> </tr>
+                                    <tr> <td> Sleep Quality </td> <td> {{fmt_p(phenotype_results.three_components.sleep_p)}} </td> <td> {{fmt(phenotype_results.three_components.sleep_eff)}} </td> </tr>
+                                    <tr> <td> Diurnal Rhythms </td> <td> {{fmt_p(phenotype_results.three_components.circ_p)}} </td> <td> {{fmt(phenotype_results.three_components.circ_eff)}} </td> </tr>
+                                </table>
+
+                                <div id='three_components_chart' style="width:500px; height:250px"> </div>
+                            </div>
 
                             <h4> Do diurnal rhythms predict {{phenotype}}?</h4>
                             <p>
@@ -97,16 +102,14 @@
                                 Among these, the phenotype case/control status was modelled through a Cox proportional hazards model with rhythm robustness (wrist temperature relative amplitude) as a factor.
                             </p>
                             <table>
-                                <thead> 
+                                <thead>
                                     <tr>
-                                        <th>  </th>
                                         <th> p-value </th>
                                         <th> log Hazard Ratio (95% CI) <br> per SD </th>
-                                        <th> Prevalence Increase (95% CI) <br> For 2 SD worse rhythms</th>
+                                        <th> Incidence Rate Increase (95% CI) <br> For 2 SD worse rhythms</th>
                                     </tr>
                                 </thead>
                                 <tr>
-                                    <td> {{phenotype}} </td>
                                     <td> {{fmt_p(phenotype_results.predictive_tests.p)}} </td>
                                     <td> {{fmt_ci(phenotype_results.predictive_tests.std_logHR, phenotype_results.predictive_tests.std_logHR_se)}}</td>
                                     <td> {{fmt(Math.exp(2*phenotype_results.predictive_tests.std_logHR)*100-100)}}% {{fmt_range(Math.exp(2*(phenotype_results.predictive_tests.std_logHR - 1.96*phenotype_results.predictive_tests.std_logHR_se))*100-100, Math.exp(2*(phenotype_results.predictive_tests.std_logHR + 2 * 1.96*phenotype_results.predictive_tests.std_logHR_se))*100-100)}}</td>
