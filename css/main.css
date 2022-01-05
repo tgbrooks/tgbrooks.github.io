@@ -27,9 +27,11 @@ table {
  padding: 1em;
 }
 
-td {
+td,th {
     padding: 0.4em 1em;
 }
+
+
 
 .list {
     overflow: auto;
