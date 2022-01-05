@@ -175,7 +175,7 @@ const app = new Vue({
             ],
             {
                 xaxis: {
-                    range: [0.0,0.3],
+                    range: [0.0,0.4],
                     title: "Effect size",
                 },
                 yaxis: {
