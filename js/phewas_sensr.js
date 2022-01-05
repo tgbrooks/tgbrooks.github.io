@@ -19,14 +19,22 @@ const app = new Vue({
             if (this.phenotype === null
                     || this.three_components_results === null
                     || this.predictive_tests === null
+                    || this.predictive_tests_by_age === null
+                    || this.predictive_tests_by_sex === null
                     || this.phecode_details === null) {
                 return null;
             }
+            const phecode_details = this.phecode_details[this.phenotype];
+            phecode_details.self_reported_condition_codes = phecode_details.self_reported_condition_codes || '';
+            phecode_details.ICD10_codes = phecode_details.ICD10_codes || '';
+            phecode_details.ICD9_codes = phecode_details.ICD9_codes || '';
 
             let results = {
                 three_components: this.three_components_results[this.phenotype],
                 predictive_tests:  this.predictive_tests[this.phenotype],
-                phecode: this.phecode_details[this.phenotype],
+                predictive_tests_by_sex:  this.predictive_tests_by_sex[this.phenotype],
+                predictive_tests_by_age:  this.predictive_tests_by_age[this.phenotype],
+                phecode: phecode_details,
             };
             return results;
         },
@@ -44,6 +52,16 @@ const app = new Vue({
             .then(response => response.json())
             .then(function(json){
                 app.predictive_tests = json;
+            });
+        fetch("data/predictive_tests_by_sex.cox.json")
+            .then(response => response.json())
+            .then(function(json){
+                app.predictive_tests_by_sex = json;
+            });
+        fetch("data/predictive_tests_by_age.cox.json")
+            .then(response => response.json())
+            .then(function(json){
+                app.predictive_tests_by_age = json;
             });
         fetch("data/phecode_details.json")
             .then(response => response.json())
@@ -115,7 +133,7 @@ const app = new Vue({
                     y: [0],
                     mode: 'markers',
                     type: 'scatter',
-                    name: 'Circadian Rhythm',
+                    name: 'Diurnal Rhythm',
                     marker: {size: 12, color: circ_color},
                 },
 
@@ -155,7 +173,13 @@ const app = new Vue({
                     showgrid: false,
                     showticklabels: false,
                     zeroline: false,
-                }
+                },
+                margin: {
+                    l: 20,
+                    r: 20,
+                    t: 110,
+                    b: 50,
+                },
             },
             {staticPlot:true});
         },

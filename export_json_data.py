@@ -15,6 +15,8 @@ out_dir = pathlib.Path("data/")
 files = [
     dict(filename = "phecodes.three_components", index_col = "phenotype"),
     dict(filename = "predictive_tests.cox", index_col="meaning"),
+    dict(filename = "predictive_tests_by_sex.cox", index_col="meaning"),
+    dict(filename = "predictive_tests_by_age.cox", index_col="meaning"),
 ]
 for file in files:
     index_col = file["index_col"]
