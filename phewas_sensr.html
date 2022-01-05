@@ -146,6 +146,15 @@
                             <span v-if="phenotype_results.predictive_tests_by_sex === undefined"> Results broken down by sex were not run due to low case counts in one or both sexes. </span>
                             <span v-if="phenotype_results.predictive_tests_by_age === undefined"> Results broken down by age were not run due to low case counts. </span> </p>
 
+
+                        <h4> Prevelance by activity rhythm </h4>
+                        
+                        The RA (relative amplitude) score derived from acceleration describes acitvity pattern robustness, with values close to 1 for large diurnal differences and values close to 0 for small differences.
+                        Below, prevelance of {{phenotype}} stratified by the RA score across the population (without controlling for other factors, such as sex or age).
+
+
+                        <div> <img v-bind:src="'figures/fancy/' + file_path_phenotype + '.png'" width=440 height=360> </img></div>
+
                         <h4> PheCODE Details </h4>
 
                         <p> Diagnoses of {{phenotype}} were derived from the <a href="https://phewascatalog.org/phecodes">PheCODE</a> {{phenotype_results.phecode.phecode}}. This includes the following sub-PheCODEs:</p>

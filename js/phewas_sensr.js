@@ -38,10 +38,19 @@ const app = new Vue({
             };
             return results;
         },
+        file_path_phenotype: function() {
+            return this.phenotype.replace("/", ",");
+        },
     },
 
     mounted: function() {
         const app = this;
+        const url = new URL(document.URL);
+        const url_phenotype = url.searchParams.get("phenotype", null);
+        if (url_phenotype !== null) {
+            app.phenotype = url_phenotype;
+        }
+
         fetch("data/phecodes.three_components.json")
             .then(response => response.json())
             .then(function(json){
@@ -188,6 +197,14 @@ const app = new Vue({
     watch: {
         phenotype_results : function() {
             this.redraw_charts = true;
+        },
+
+        phenotype: function(newval, oldval) {
+            if (newval !== oldval) {
+                let url = new URL(document.URL);
+                url.searchParams.set("phenotype", newval);
+                window.history.replaceState(null, document.title, url);
+            }
         },
     },
 });
