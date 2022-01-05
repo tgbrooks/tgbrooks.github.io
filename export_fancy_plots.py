@@ -40,7 +40,7 @@ phecodes = phecode_info.reset_index().set_index("phenotype").loc[phenotypes].phe
 
 print("Loaded data")
 
-for phecode, phenotype in zip(phecodes, phenotypes):
+for phecode, phenotype in list(zip(phecodes, phenotypes)):
     print(phecode, phenotype)
     fig = plotter.fancy_case_control_plot(data, phecode, var="acceleration_RA", normalize=True, confidence_interval=True, rescale=True, annotate=False)
     safe_phenotype = phenotype.replace("/", ",")

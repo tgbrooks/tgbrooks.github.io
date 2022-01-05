@@ -56,6 +56,7 @@ const app = new Vue({
             .then(function(json){
                 app.three_components_results = json;
                 app.phecodes = Object.keys(json);
+                app.phecodes.sort();
             });
         fetch("data/predictive_tests.cox.json")
             .then(response => response.json())
