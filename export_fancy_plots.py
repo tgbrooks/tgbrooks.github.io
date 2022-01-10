@@ -26,8 +26,6 @@ print(out_dir)
 
 data, ukbb, activity, activity_summary, activity_summary_seasonal, activity_variables, activity_variance, full_activity, phecode_data, phecode_groups, phecode_info, phecode_map, icd10_entries, icd10_entries_all, phecode_details = phewas_preprocess.load_data(COHORT)
 
-medications = phewas_preprocess.load_medications(data.index)
-
 # Load descriptions + categorization of activity variables and quantitative variables
 activity_variable_descriptions = pandas.read_excel("../table_header.xlsx", index_col="Activity Variable", sheet_name="Variables", engine="openpyxl")
 quantitative_variable_descriptions = pandas.read_excel("../quantitative_variables.xlsx", index_col=0, engine="openpyxl")

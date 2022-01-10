@@ -74,6 +74,25 @@
                     <div v-if="phenotype_results !== null">
                         <h3> {{phenotype}} </h3>
 
+                        <h4> Acceleration and Temperature traces </h4>
+
+                        <p>
+                            Acceleration and wrist temperature were measured using an Axivity AX3 (<a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0169649">Doherty, et al 2017</a>).
+                            Below are the average acceleration and wrist temperature values by case/control status across the day.
+                        </p>
+                        <div style="display: flex; align-items: center; justify-content: space-evenly; flex-wrap: wrap">
+                            <img v-bind:src="'figures/acc/' + file_path_phenotype + '.png'" width=440 height=330>
+                            </img>
+                            <img v-bind:src="'figures/temp/' + file_path_phenotype + '.png'" width=440 height=330>
+                            </img>
+                        </div>
+
+                        <p>
+                            Case-controls pairs matched by age and sex were used.
+                            Temperature values are normalized to have mean 0 in each individual.
+                            Shaded regions indicate the middle 50% of the population.
+                        </p>
+
                         <h4> Activity Components </h4>
                         <p>
                             Since actigraphy captures multiple mutually overlapping measures, we modelled phenotypes by three activity components: physical activity (average activity levels), sleep quality (sleep efficiency), and diurnal rhythms (relative amplitude of wrist temperature).
