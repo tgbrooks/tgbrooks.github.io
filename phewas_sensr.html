@@ -24,7 +24,7 @@
         <link rel="stylesheet" href="css/main.css">
 
         <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js" defer></script>
-        <script src="https://cdn.plot.ly/plotly-2.8.3.min.js"></script>
+        <script src="https://cdn.plot.ly/plotly-2.8.3.min.js" defer></script>
         <script src="js/phewas_sensr.js" defer></script>
     </head>
 
@@ -57,13 +57,21 @@
             </section>
 
             <section>
-                <h2> Results </h2>
-                <p>
-                    Phenotypes were categorized according to <a href="https://phewascatalog.org/phecodes">PheCODE v1.2</a>.
-                    Select a phenotype below to explore selected results from the paper related to it.
-                </p>
-
                 <div id="app">
+                    <h2 id="results"> Results </h2>
+                    <p>
+                        Phenotypes were categorized according to <a href="https://phewascatalog.org/phecodes">PheCODE v1.2</a>.
+                        Select a phenotype below to explore selected results related to the chosen phenotype; see paper for full methods and supplemental data for full results.
+                        Top actigraphy-associated phenotypes include
+                        <a href="#results" v-on:click="phenotype = 'Diabetes mellitus'">diabetes mellitus</a>,
+                        <a href="#results" v-on:click="phenotype = 'Hypertension'">hypertension</a>,
+                        <a href="#results" v-on:click="phenotype = 'Renal failure'">renal failure</a>,
+                        <a href="#results" v-on:click="phenotype = 'Chronic airway obstruction'">chronic airway obstruction</a>,
+                        <a href="#results" v-on:click="phenotype = 'Pneumonia'">pneumonia</a>,
+                        <a href="#results" v-on:click="phenotype = 'Anxiety disorders'">anxiety disorders</a>, and
+                        <a href="#results" v-on:click="phenotype = 'Disorders of lipoid metabolism'">disorders of lipoid metabolism</a>.
+                    </p>
+
 
                     <select name="phenotype" v-model:value="phenotype">
                         <option v-for="phecode in phecodes" v-bind:value="phecode" v-bind:key="phecode">
@@ -77,7 +85,7 @@
                         <h4> Acceleration and Temperature traces </h4>
 
                         <p>
-                            Acceleration and wrist temperature were measured using an Axivity AX3 (<a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0169649">Doherty, et al 2017</a>).
+                            Acceleration and wrist temperature were measured using an wrist-worn  Axivity AX3 for one-week periods (<a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0169649">Doherty, et al 2017</a>).
                             Below are the average acceleration and wrist temperature values by case/control status across the day.
                         </p>
                         <div style="display: flex; align-items: center; justify-content: space-evenly; flex-wrap: wrap">
@@ -123,58 +131,64 @@
                         </p>
 
                         <h4> Do diurnal rhythms predict {{phenotype}}?</h4>
-                        <p>
-                            To determine if diurnal rhythms predict later diagnosis with the phenotypes, the individuals who had no record of the phenotype at the time of actigraphy measurement were selected.
-                            Among these, the phenotype case/control status was modelled through a Cox proportional hazards model with rhythm robustness (wrist temperature relative amplitude) as a factor.
-                        </p>
-                        <table>
-                            <thead>
+                        <div v-if="phenotype_results.predictive_tests !== undefined">
+                            <p>
+                                To determine if diurnal rhythms predict later diagnosis with the phenotypes, the individuals who had no record of the phenotype at the time of actigraphy measurement were selected.
+                                Among these, the phenotype case/control status was modelled through a Cox proportional hazards model with rhythm robustness (wrist temperature relative amplitude) as a factor.
+                            </p>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th> </th>
+                                        <th> p-value </th>
+                                        <th> log Hazard Ratio (95% CI) <br> per SD </th>
+                                        <th> Incidence Rate Increase (95% CI) <br> For 2 SD worse rhythms</th>
+                                    </tr>
+                                </thead>
                                 <tr>
-                                    <th> </th>
-                                    <th> p-value </th>
-                                    <th> log Hazard Ratio (95% CI) <br> per SD </th>
-                                    <th> Incidence Rate Increase (95% CI) <br> For 2 SD worse rhythms</th>
+                                    <td> Overall </td>
+                                    <td> {{fmt_p(phenotype_results.predictive_tests.p)}} </td>
+                                    <td> {{fmt_ci(phenotype_results.predictive_tests.std_logHR, phenotype_results.predictive_tests.std_logHR_se)}}</td>
+                                    <td> {{fmt(Math.exp(2*phenotype_results.predictive_tests.std_logHR)*100-100)}}% {{fmt_range(Math.exp(2*(phenotype_results.predictive_tests.std_logHR - 1.96*phenotype_results.predictive_tests.std_logHR_se))*100-100, Math.exp(2*(phenotype_results.predictive_tests.std_logHR + 2 * 1.96*phenotype_results.predictive_tests.std_logHR_se))*100-100)}}</td>
                                 </tr>
-                            </thead>
-                            <tr>
-                                <td> Overall </td>
-                                <td> {{fmt_p(phenotype_results.predictive_tests.p)}} </td>
-                                <td> {{fmt_ci(phenotype_results.predictive_tests.std_logHR, phenotype_results.predictive_tests.std_logHR_se)}}</td>
-                                <td> {{fmt(Math.exp(2*phenotype_results.predictive_tests.std_logHR)*100-100)}}% {{fmt_range(Math.exp(2*(phenotype_results.predictive_tests.std_logHR - 1.96*phenotype_results.predictive_tests.std_logHR_se))*100-100, Math.exp(2*(phenotype_results.predictive_tests.std_logHR + 2 * 1.96*phenotype_results.predictive_tests.std_logHR_se))*100-100)}}</td>
-                            </tr>
-                            <tr v-if="phenotype_results.predictive_tests_by_sex !== undefined">
-                                <td> Males </td>
-                                <td> {{fmt_p(phenotype_results.predictive_tests_by_sex.male_p)}} </td>
-                                <td> {{fmt_ci(phenotype_results.predictive_tests_by_sex.male_std_logHR, phenotype_results.predictive_tests_by_sex.male_std_logHR_se)}}</td>
-                                <td> {{fmt(Math.exp(2*phenotype_results.predictive_tests_by_sex.male_std_logHR)*100-100)}}% {{fmt_range(Math.exp(2*(phenotype_results.predictive_tests_by_sex.male_std_logHR - 1.96*phenotype_results.predictive_tests_by_sex.male_std_logHR_se))*100-100, Math.exp(2*(phenotype_results.predictive_tests_by_sex.male_std_logHR + 2 * 1.96*phenotype_results.predictive_tests_by_sex.male_std_logHR_se))*100-100)}}</td>
-                            </tr>
-                            <tr v-if="phenotype_results.predictive_tests_by_sex !== undefined">
-                                <td> Females </td>
-                                <td> {{fmt_p(phenotype_results.predictive_tests_by_sex.female_p)}} </td>
-                                <td> {{fmt_ci(phenotype_results.predictive_tests_by_sex.female_std_logHR, phenotype_results.predictive_tests_by_sex.female_std_logHR_se)}}</td>
-                                <td> {{fmt(Math.exp(2*phenotype_results.predictive_tests_by_sex.female_std_logHR)*100-100)}}% {{fmt_range(Math.exp(2*(phenotype_results.predictive_tests_by_sex.female_std_logHR - 1.96*phenotype_results.predictive_tests_by_sex.female_std_logHR_se))*100-100, Math.exp(2*(phenotype_results.predictive_tests_by_sex.female_std_logHR + 2 * 1.96*phenotype_results.predictive_tests_by_sex.female_std_logHR_se))*100-100)}}</td>
-                            </tr>
-                            <tr v-if="phenotype_results.predictive_tests_by_age !== undefined">
-                                <td> Age 55 </td>
-                                <td> {{fmt_p(phenotype_results.predictive_tests_by_age.age55_p)}} </td>
-                                <td> {{fmt_ci(phenotype_results.predictive_tests_by_age.age55_std_logHR, phenotype_results.predictive_tests_by_age.age55_std_logHR_se)}}</td>
-                                <td> {{fmt(Math.exp(2*phenotype_results.predictive_tests_by_age.age55_std_logHR)*100-100)}}% {{fmt_range(Math.exp(2*(phenotype_results.predictive_tests_by_age.age55_std_logHR - 1.96*phenotype_results.predictive_tests_by_age.age55_std_logHR_se))*100-100, Math.exp(2*(phenotype_results.predictive_tests_by_age.age55_std_logHR + 2 * 1.96*phenotype_results.predictive_tests_by_age.age55_std_logHR_se))*100-100)}}</td>
-                            </tr>
-                            <tr v-if="phenotype_results.predictive_tests_by_age !== undefined">
-                                <td> Age 70 </td>
-                                <td> {{fmt_p(phenotype_results.predictive_tests_by_age.age70_p)}} </td>
-                                <td> {{fmt_ci(phenotype_results.predictive_tests_by_age.age70_std_logHR, phenotype_results.predictive_tests_by_age.age70_std_logHR_se)}}</td>
-                                <td> {{fmt(Math.exp(2*phenotype_results.predictive_tests_by_age.age70_std_logHR)*100-100)}}% {{fmt_range(Math.exp(2*(phenotype_results.predictive_tests_by_age.age70_std_logHR - 1.96*phenotype_results.predictive_tests_by_age.age70_std_logHR_se))*100-100, Math.exp(2*(phenotype_results.predictive_tests_by_age.age70_std_logHR + 2 * 1.96*phenotype_results.predictive_tests_by_age.age70_std_logHR_se))*100-100)}}</td>
-                            </tr>
-                        </table>
-                        <p> There were {{phenotype_results.predictive_tests.N_cases}} cases and {{phenotype_results.predictive_tests.N_controls}} controls included.
-                            <span v-if="phenotype_results.predictive_tests_by_sex === undefined"> Results broken down by sex were not run due to low case counts in one or both sexes. </span>
-                            <span v-if="phenotype_results.predictive_tests_by_age === undefined"> Results broken down by age were not run due to low case counts. </span> </p>
+                                <tr v-if="phenotype_results.predictive_tests_by_sex !== undefined">
+                                    <td> Males </td>
+                                    <td> {{fmt_p(phenotype_results.predictive_tests_by_sex.male_p)}} </td>
+                                    <td> {{fmt_ci(phenotype_results.predictive_tests_by_sex.male_std_logHR, phenotype_results.predictive_tests_by_sex.male_std_logHR_se)}}</td>
+                                    <td> {{fmt(Math.exp(2*phenotype_results.predictive_tests_by_sex.male_std_logHR)*100-100)}}% {{fmt_range(Math.exp(2*(phenotype_results.predictive_tests_by_sex.male_std_logHR - 1.96*phenotype_results.predictive_tests_by_sex.male_std_logHR_se))*100-100, Math.exp(2*(phenotype_results.predictive_tests_by_sex.male_std_logHR + 2 * 1.96*phenotype_results.predictive_tests_by_sex.male_std_logHR_se))*100-100)}}</td>
+                                </tr>
+                                <tr v-if="phenotype_results.predictive_tests_by_sex !== undefined">
+                                    <td> Females </td>
+                                    <td> {{fmt_p(phenotype_results.predictive_tests_by_sex.female_p)}} </td>
+                                    <td> {{fmt_ci(phenotype_results.predictive_tests_by_sex.female_std_logHR, phenotype_results.predictive_tests_by_sex.female_std_logHR_se)}}</td>
+                                    <td> {{fmt(Math.exp(2*phenotype_results.predictive_tests_by_sex.female_std_logHR)*100-100)}}% {{fmt_range(Math.exp(2*(phenotype_results.predictive_tests_by_sex.female_std_logHR - 1.96*phenotype_results.predictive_tests_by_sex.female_std_logHR_se))*100-100, Math.exp(2*(phenotype_results.predictive_tests_by_sex.female_std_logHR + 2 * 1.96*phenotype_results.predictive_tests_by_sex.female_std_logHR_se))*100-100)}}</td>
+                                </tr>
+                                <tr v-if="phenotype_results.predictive_tests_by_age !== undefined">
+                                    <td> Age 55 </td>
+                                    <td> {{fmt_p(phenotype_results.predictive_tests_by_age.age55_p)}} </td>
+                                    <td> {{fmt_ci(phenotype_results.predictive_tests_by_age.age55_std_logHR, phenotype_results.predictive_tests_by_age.age55_std_logHR_se)}}</td>
+                                    <td> {{fmt(Math.exp(2*phenotype_results.predictive_tests_by_age.age55_std_logHR)*100-100)}}% {{fmt_range(Math.exp(2*(phenotype_results.predictive_tests_by_age.age55_std_logHR - 1.96*phenotype_results.predictive_tests_by_age.age55_std_logHR_se))*100-100, Math.exp(2*(phenotype_results.predictive_tests_by_age.age55_std_logHR + 2 * 1.96*phenotype_results.predictive_tests_by_age.age55_std_logHR_se))*100-100)}}</td>
+                                </tr>
+                                <tr v-if="phenotype_results.predictive_tests_by_age !== undefined">
+                                    <td> Age 70 </td>
+                                    <td> {{fmt_p(phenotype_results.predictive_tests_by_age.age70_p)}} </td>
+                                    <td> {{fmt_ci(phenotype_results.predictive_tests_by_age.age70_std_logHR, phenotype_results.predictive_tests_by_age.age70_std_logHR_se)}}</td>
+                                    <td> {{fmt(Math.exp(2*phenotype_results.predictive_tests_by_age.age70_std_logHR)*100-100)}}% {{fmt_range(Math.exp(2*(phenotype_results.predictive_tests_by_age.age70_std_logHR - 1.96*phenotype_results.predictive_tests_by_age.age70_std_logHR_se))*100-100, Math.exp(2*(phenotype_results.predictive_tests_by_age.age70_std_logHR + 2 * 1.96*phenotype_results.predictive_tests_by_age.age70_std_logHR_se))*100-100)}}</td>
+                                </tr>
+                            </table>
+                            <p> There were {{phenotype_results.predictive_tests.N_cases}} cases and {{phenotype_results.predictive_tests.N_controls}} controls included.
+                                <span v-if="phenotype_results.predictive_tests_by_sex === undefined"> Results broken down by sex were not run due to low case counts in one or both sexes. </span>
+                                <span v-if="phenotype_results.predictive_tests_by_age === undefined"> Results broken down by age were not run due to low case counts. </span>
+                            </p>
+                        </div>
+                        <div v-else>
+                            Predictive tests were not run for this phenotype due to low case counts among participants with no prior record of the phenotype at the time of actigraphy recordings.
+                        </div>
 
 
                         <h4> Prevelance by activity rhythm </h4>
 
-                        The RA (relative amplitude) score derived from acceleration describes acitvity pattern robustness, with values close to 1 for large diurnal differences and values close to 0 for small differences.
+                        The RA (relative amplitude) score derived from acceleration describes acitvity pattern robustness, with values close to 1 for large diurnal differences and lower values small diurnal differences, see <a href="https://pubmed.ncbi.nlm.nih.gov/2322616/">Witting, et al. 1990</a>.
                         Below, prevelance of {{phenotype}} stratified by the RA score across the population (without controlling for other factors, such as sex or age).
 
 

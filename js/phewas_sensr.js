@@ -209,4 +209,3 @@ const app = new Vue({
         },
     },
 });
-
