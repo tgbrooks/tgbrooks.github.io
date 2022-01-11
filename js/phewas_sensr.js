@@ -6,6 +6,7 @@ const app = new Vue({
         three_components_results: null,
         predictive_tests: null,
         phecode_details: null,
+        trace_match_counts: null,
         config: {
             three_components: {
                 x_scale: 1000,
@@ -21,7 +22,8 @@ const app = new Vue({
                     || this.predictive_tests === null
                     || this.predictive_tests_by_age === null
                     || this.predictive_tests_by_sex === null
-                    || this.phecode_details === null) {
+                    || this.phecode_details === null
+                    || this.trace_match_counts === null) {
                 return null;
             }
             const phecode_details = this.phecode_details[this.phenotype];
@@ -35,6 +37,7 @@ const app = new Vue({
                 predictive_tests_by_sex:  this.predictive_tests_by_sex[this.phenotype],
                 predictive_tests_by_age:  this.predictive_tests_by_age[this.phenotype],
                 phecode: phecode_details,
+                trace_match_counts: this.trace_match_counts[this.phenotype],
             };
             return results;
         },
@@ -77,6 +80,11 @@ const app = new Vue({
             .then(response => response.json())
             .then(function(json){
                 app.phecode_details = json;
+            });
+        fetch("figures/trace_match_counts.json")
+            .then(response => response.json())
+            .then(function(json){
+                app.trace_match_counts =  json;
             });
     },
 
