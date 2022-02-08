@@ -42,3 +42,20 @@ td,th {
 [v-cloak] {
     display: none;
 }
+
+#phenotype_select {
+    width: 300px;
+    text-overflow: ellipsis;
+}
+
+.trace_image {
+    width: 440px;
+    aspect-ratio: 440/330;
+    max-width: 100%;
+}
+
+.fancy_plot {
+    width: 440px;
+    aspect-ratio: 440/360;
+    max-width: 100%
+}
