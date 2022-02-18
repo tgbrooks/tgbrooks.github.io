@@ -12,7 +12,7 @@ const app = new Vue({
                 x_scale: 1000,
             },
         },
-        redraw_plots: true,
+        redraw_plots: false,
     },
 
     computed: {
@@ -89,9 +89,9 @@ const app = new Vue({
     },
 
     updated: function() {
-        if (this.redraw_charts) {
+        if (this.redraw_plots) {
             this.plot_results();
-            this.redraw_charts = false;
+            this.redraw_plots = false;
         }
     },
 
@@ -205,7 +205,7 @@ const app = new Vue({
 
     watch: {
         phenotype_results : function() {
-            this.redraw_charts = true;
+            this.redraw_plots = true;
         },
 
         phenotype: function(newval, oldval) {
