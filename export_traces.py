@@ -10,61 +10,61 @@ import json
 import pandas
 import pylab
 
-COHORT = 2
+COHORT = 0
 
 
-data_dir = pathlib.Path("../global_phewas/cohort2/").resolve()
-fig_dir = pathlib.Path("figures/").resolve()
+data_dir = pathlib.Path("../longitudinal/cohort0/").resolve()
+fig_dir = (data_dir/ "figures/").resolve()
 fig_dir.mkdir(exist_ok=True)
 temp_out_dir = (fig_dir/ "temp/").resolve()
 temp_out_dir.mkdir(exist_ok=True)
 acc_out_dir = (fig_dir/ "acc/").resolve()
 acc_out_dir.mkdir(exist_ok=True)
 
-# Hack to get to the right imports and to allow those scripts to
-# load the files we need
-sys.path.insert(0, "../scripts")
+# NOTE: run this from the /scripts/ directory
+# so that we can import these
 import phewas_preprocess
-import phewas_plots
 import day_plots
-os.chdir("../scripts")
-print(os.getcwd())
+import longitudinal_diagnoses
 
-data, ukbb, activity, activity_summary, activity_summary_seasonal, activity_variables, activity_variance, full_activity, phecode_data, phecode_groups, phecode_info, phecode_map, icd10_entries, icd10_entries_all, phecode_details = phewas_preprocess.load_data(COHORT)
+#### Load and preprocess the underlying data
+data, ukbb, activity, activity_summary, activity_summary_seasonal, activity_variables, activity_variance, full_activity = phewas_preprocess.load_data(COHORT)
+selected_ids = data.index
+actigraphy_start_date = pandas.Series(data.index.map(pandas.to_datetime(activity_summary['file-startTime'])), index=data.index)
 
-# Load descriptions + categorization of activity variables and quantitative variables
-activity_variable_descriptions = pandas.read_excel("../table_header.xlsx", index_col="Activity Variable", sheet_name="Variables", engine="openpyxl")
-quantitative_variable_descriptions = pandas.read_excel("../quantitative_variables.xlsx", index_col=0, engine="openpyxl")
+case_status, phecode_info, phecode_details = longitudinal_diagnoses.load_longitudinal_diagnoses(selected_ids, actigraphy_start_date)
 
-
-plotter = phewas_plots.Plotter(phecode_info, phecode_map, {}, activity_variables, activity_variable_descriptions, quantitative_variable_descriptions)
-
-phenotypes = pandas.read_csv(data_dir/"phecodes.three_components.txt", index_col = "phenotype", sep="\t").index
-phecodes = phecode_info.reset_index().set_index("phenotype").loc[phenotypes].phecode
+#### Run (or load from disk if they already exist) 
+#### the statistical tests
+results = pandas.read_csv(data_dir /"predictive_tests.cox.txt", sep="\t", dtype={"phecode": str})
+phenotypes = results.meaning
+phecodes = results.phecode
 
 print("Loaded data")
 
 # Plot actigraphy and tempreature by  case/control status
 # after matching cases and controls
 match_counts = {}
-def case_control(phecode, data=data, N=10):
-    cats = data[phecode].astype("category").cat.rename_categories({0:"Control", 1:"Case"})
+def case_control(phecode, phenotype, data=data, N=10):
     colors = {"Case": "orange", "Control": "teal"}
-    phenotype = phecode_info.loc[phecode].phenotype
+
 
     # Attempt to match case-control
-    cases = data.index[cats == 'Case']
+    diagnoses = case_status[case_status.PHECODE == phecode].set_index('ID').case_status.cat.set_categories(['case', 'control', 'exclude'])
+    status = data.index.map(diagnoses).fillna('control')
+    cases = data.index[status == 'case']
+    controls = data.index[status == 'control']
     matched_case = []
     matched_control = []
-    remaining_cases = data.index[cats == "Control"]
+    remaining_controls = controls
     for case in cases:
         target_age = data.loc[case].age_at_actigraphy
         target_sex = data.loc[case].sex
         matches = data.index[((data.age_at_actigraphy - target_age).abs() < 1) & (data.sex == target_sex)]
-        good_matches = remaining_cases[remaining_cases.isin(matches)]
+        good_matches = remaining_controls[remaining_controls.isin(matches)]
         if len(good_matches) > 0:
             chosen_match = good_matches[0]
-            remaining_cases = remaining_cases[remaining_cases != chosen_match]
+            remaining_controls = remaining_controls[remaining_controls != chosen_match]
             matched_case.append(case)
             matched_control.append(chosen_match)
         if len(matched_case) >= N:
@@ -109,9 +109,9 @@ def case_control(phecode, data=data, N=10):
 # Generate for each phenotype these plots
 available_ids = day_plots.get_ids_of_traces_available()
 available_data = data[data.index.isin(available_ids)]
-for phecode, phenotype in zip(phecodes, phenotypes):
+for phecode, phenotype in list(zip(phecodes, phenotypes)):
     safe_phenotype = phenotype.replace("/", ",")
-    temp_fig, acc_fig = case_control(phecode, data=available_data, N = 5000)
+    temp_fig, acc_fig = case_control(phecode, phenotype, data=available_data, N = 5000)
     temp_fig.savefig(temp_out_dir / f"{safe_phenotype}.png", dpi=300)
     acc_fig.savefig(acc_out_dir / f"{safe_phenotype}.png", dpi=300)
     pylab.close(temp_fig)

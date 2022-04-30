@@ -8,12 +8,12 @@ import json
 
 import pandas
 
-data_dir = pathlib.Path("../data/ukbb/global_phewas/cohort2/")
+data_dir = pathlib.Path("../data/ukbb/longitudinal/cohort0/")
 out_dir = pathlib.Path("data/")
 
 
 files = [
-    dict(filename = "phecodes.three_components", index_col = "phenotype"),
+    #dict(filename = "phecodes.three_components", index_col = "phenotype"),
     dict(filename = "predictive_tests.cox", index_col="meaning"),
     dict(filename = "predictive_tests_by_sex.cox", index_col="meaning"),
     dict(filename = "predictive_tests_by_age.cox", index_col="meaning"),
@@ -26,5 +26,7 @@ for file in files:
     df.to_json(out_file, orient="index")
 
 # Do the phecode details
-df = pandas.read_excel(data_dir/"results.xlsx", sheet_name="PheCODEs", index_col="Meaning")
+df = pandas.read_excel(data_dir/"results.xlsx", sheet_name="PheCODEs", index_col=0)
+df.index.name = "phecode"
+df = df.reset_index().set_index("Meaning")
 df.to_json(out_dir/"phecode_details.json", orient="index")
