@@ -1,3 +1,7 @@
+// Register components
+Vue.component('v-select', VueSelect.VueSelect);
+
+// Main app
 const app = new Vue({
     el: "#app",
     data: {

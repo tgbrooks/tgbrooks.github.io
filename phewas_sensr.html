@@ -26,6 +26,8 @@
         <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js" defer></script>
         <script src="https://cdn.plot.ly/plotly-2.8.3.min.js" defer></script>
         <script src="js/phewas_sensr.js?v=2" defer></script>
+        <script src="https://unpkg.com/vue-select@3.0.0"></script> <!-- searchable select box -->
+        <link rel="stylesheet" href="https://unpkg.com/vue-select@3.0.0/dist/vue-select.css">
     </head>
 
     <body>
@@ -68,11 +70,14 @@
                     </p>
 
 
-                    <select name="phenotype" v-model:value="phenotype" id="phenotype_select">
+                    <v-select :options="phecodes" v-model="phenotype" :clearable="false">
+                    </v-select>
+                    <!-- <select name="phenotype" v-model:value="phenotype" id="phenotype_select">
                         <option v-for="phecode in phecodes" v-bind:value="phecode" v-bind:key="phecode">
                             {{phecode}}
                         </option >
                     </select>
+                    -->
 
                     <div v-if="phenotype_results !== null">
                         <h3> {{phenotype}} </h3>
