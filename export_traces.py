@@ -34,8 +34,6 @@ actigraphy_start_date = pandas.Series(data.index.map(pandas.to_datetime(activity
 
 case_status, phecode_info, phecode_details = longitudinal_diagnoses.load_longitudinal_diagnoses(selected_ids, actigraphy_start_date)
 
-#### Run (or load from disk if they already exist) 
-#### the statistical tests
 results = pandas.read_csv(data_dir /"predictive_tests.cox.txt", sep="\t", dtype={"phecode": str})
 phenotypes = results.meaning
 phecodes = results.phecode
