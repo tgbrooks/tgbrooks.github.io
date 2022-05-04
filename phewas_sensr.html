@@ -185,12 +185,13 @@
 
                         <p> Diagnoses of {{phenotype}} were derived from the <a href="https://phewascatalog.org/phecodes">PheCODE</a> {{phenotype_results.phecode.phecode}}. This includes the following sub-PheCODEs:</p>
                         <div class="list">{{phenotype_results.phecode.phecodes.split(";").join(', ')}}</div>
-                        <p> From ICD10 codes, diagnoses were identified from the codes:</p>
+                        <p> From ICD10 codes, diagnoses were identified from the codes (with case counts from each in parentheses):</p>
                         <div class="list">
-                            <span v-for="icd10 in phenotype_results.phecode.ICD10_codes.split(';')" v-bin:key='icd10'>
-                                <a v-bind:href="'https://www.icd10data.com/search?s=' + icd10"> {{icd10}} </a>,
+                            <span v-for="icd10 in phenotype_results.phecode.ICD10_codes.split(';')" v-bind:key='icd10'>
+                                <a v-bind:href="'https://www.icd10data.com/search?s=' + icd10.split(' ')[0]"> {{icd10}} </a>,
                             </span>
                         </div>
+                        <p> Note that some subjects may have had multiple ICD10 codes contributing to this PheCODE and so the total of all the ICD10 case counts may not match that of the PheCODE.
                         <p> Subjects were further excluded based off diagnoses predating the actigraphy measurement. The following records always occur prior to the date of actigraphy measurement and therefore were used for exclusions. </p>
                         <p> From ICD9 codes, instances were identified from the codes: </p>
                         <div class="list">{{phenotype_results.phecode.ICD9_codes.split(";").join(', ')}}</div>
