@@ -122,31 +122,31 @@
                                         <tr>
                                             <td> Overall </td>
                                             <td> {{fmt_p(phenotype_results.predictive_tests.p)}} </td>
-                                            <td> {{fmt_ci(-phenotype_results.predictive_tests.std_logHR, -phenotype_results.predictive_tests.std_logHR_se)}}</td>
+                                            <td> {{fmt_ci(-phenotype_results.predictive_tests.std_logHR, phenotype_results.predictive_tests.std_logHR_se)}}</td>
                                             <td> {{fmt(Math.exp(-2*phenotype_results.predictive_tests.std_logHR)*100-100)}}% {{fmt_range(Math.exp(2*(-phenotype_results.predictive_tests.std_logHR - 1.96*phenotype_results.predictive_tests.std_logHR_se))*100-100, Math.exp(2*(-phenotype_results.predictive_tests.std_logHR + 2 * 1.96*phenotype_results.predictive_tests.std_logHR_se))*100-100)}}</td>
                                         </tr>
                                         <tr v-if="phenotype_results.predictive_tests_by_sex !== undefined">
                                             <td> Males </td>
                                             <td> {{fmt_p(phenotype_results.predictive_tests_by_sex.male_p)}} </td>
-                                            <td> {{fmt_ci(-phenotype_results.predictive_tests_by_sex.std_male_logHR, -phenotype_results.predictive_tests_by_sex.std_male_logHR_se)}}</td>
+                                            <td> {{fmt_ci(-phenotype_results.predictive_tests_by_sex.std_male_logHR, phenotype_results.predictive_tests_by_sex.std_male_logHR_se)}}</td>
                                             <td> {{fmt(Math.exp(-2*phenotype_results.predictive_tests_by_sex.std_male_logHR)*100-100)}}% {{fmt_range(Math.exp(2*(-phenotype_results.predictive_tests_by_sex.std_male_logHR - 1.96*phenotype_results.predictive_tests_by_sex.std_male_logHR_se))*100-100, Math.exp(2*(-phenotype_results.predictive_tests_by_sex.std_male_logHR + 2 * 1.96*phenotype_results.predictive_tests_by_sex.std_male_logHR_se))*100-100)}}</td>
                                         </tr>
                                         <tr v-if="phenotype_results.predictive_tests_by_sex !== undefined">
                                             <td> Females </td>
                                             <td> {{fmt_p(phenotype_results.predictive_tests_by_sex.female_p)}} </td>
-                                            <td> {{fmt_ci(-phenotype_results.predictive_tests_by_sex.std_female_logHR, -phenotype_results.predictive_tests_by_sex.std_female_logHR_se)}}</td>
-                                            <td> {{fmt(Math.exp(-2*phenotype_results.predictive_tests_by_sex.std_female_logHR)*100-100)}}% {{fmt_range(Math.exp(-2*(phenotype_results.predictive_tests_by_sex.std_female_logHR - 1.96*phenotype_results.predictive_tests_by_sex.std_female_logHR_se))*100-100, Math.exp(-2*(phenotype_results.predictive_tests_by_sex.std_female_logHR + 2 * 1.96*phenotype_results.predictive_tests_by_sex.std_female_logHR_se))*100-100)}}</td>
+                                            <td> {{fmt_ci(-phenotype_results.predictive_tests_by_sex.std_female_logHR, phenotype_results.predictive_tests_by_sex.std_female_logHR_se)}}</td>
+                                            <td> {{fmt(Math.exp(-2*phenotype_results.predictive_tests_by_sex.std_female_logHR)*100-100)}}% {{fmt_range(Math.exp(2*(-phenotype_results.predictive_tests_by_sex.std_female_logHR - 1.96*phenotype_results.predictive_tests_by_sex.std_female_logHR_se))*100-100, Math.exp(2*(-phenotype_results.predictive_tests_by_sex.std_female_logHR + 2 * 1.96*phenotype_results.predictive_tests_by_sex.std_female_logHR_se))*100-100)}}</td>
                                         </tr>
                                         <tr v-if="phenotype_results.predictive_tests_by_age !== undefined">
                                             <td> Under 65</td>
                                             <td> {{fmt_p(phenotype_results.predictive_tests_by_age.under_65_p)}} </td>
-                                            <td> {{fmt_ci(-phenotype_results.predictive_tests_by_age.under_65_std_logHR, -phenotype_results.predictive_tests_by_age.under_65_std_logHR_se)}}</td>
+                                            <td> {{fmt_ci(-phenotype_results.predictive_tests_by_age.under_65_std_logHR, phenotype_results.predictive_tests_by_age.under_65_std_logHR_se)}}</td>
                                             <td> {{fmt(Math.exp(-2*phenotype_results.predictive_tests_by_age.under_65_std_logHR)*100-100)}}% {{fmt_range(Math.exp(2*(-phenotype_results.predictive_tests_by_age.under_65_std_logHR - 1.96*phenotype_results.predictive_tests_by_age.under_65_std_logHR_se))*100-100, Math.exp(2*(-phenotype_results.predictive_tests_by_age.under_65_std_logHR + 2 * 1.96*phenotype_results.predictive_tests_by_age.under_65_std_logHR_se))*100-100)}}</td>
                                         </tr>
                                         <tr v-if="phenotype_results.predictive_tests_by_age !== undefined">
                                             <td> Over 65 </td>
                                             <td> {{fmt_p(phenotype_results.predictive_tests_by_age.over_65_p)}} </td>
-                                            <td> {{fmt_ci(-phenotype_results.predictive_tests_by_age.over_65_std_logHR, -phenotype_results.predictive_tests_by_age.over_65_std_logHR_se)}}</td>
+                                            <td> {{fmt_ci(-phenotype_results.predictive_tests_by_age.over_65_std_logHR, phenotype_results.predictive_tests_by_age.over_65_std_logHR_se)}}</td>
                                             <td> {{fmt(Math.exp(-2*phenotype_results.predictive_tests_by_age.over_65_std_logHR)*100-100)}}% {{fmt_range(Math.exp(2*(-phenotype_results.predictive_tests_by_age.over_65_std_logHR - 1.96*phenotype_results.predictive_tests_by_age.over_65_std_logHR_se))*100-100, Math.exp(2*(-phenotype_results.predictive_tests_by_age.over_65_std_logHR + 2 * 1.96*phenotype_results.predictive_tests_by_age.over_65_std_logHR_se))*100-100)}}</td>
                                         </tr>
                                     </table>
