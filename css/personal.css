@@ -1,0 +1,32 @@
+#info-box{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0;
+    flex-wrap: wrap;
+}
+
+#profile {
+    max-width: 500px;
+    text-align: center;
+}
+#profile li {
+    list-style-type: none;
+    padding: 0.25rem;
+}
+
+#summary {
+    max-width: 500px;
+}
+
+#summary li{
+    padding: 0.25rem;
+}
+
+#headshot {
+    width: 10rem;
+    border-radius: 50%;
+}
+
+.publication-list li{
+    padding: 0.25rem;
+}
