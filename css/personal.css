@@ -30,6 +30,9 @@ section {
     list-style-type: none;
     padding: 0.25rem;
 }
+#profile ul{
+    padding-left: 0;
+}
 #profile h1 {
     margin: 0;
     padding: 0;
@@ -46,10 +49,12 @@ section {
 .separator {
     display: flex;
     justify-content: space-evenly;
-    margin: 1em;
+    margin: 0.0em;
+    flex-wrap: wrap;
 }
 .separator div {
-    margin: 1em;
+    min-width: 200px;
+    max-width: 300px;
 }
 
 #headshot {
@@ -65,7 +70,7 @@ section {
     display: none;
 }
 .publication-list a {
-    font-weight: bold;
+    font-weight: 600;
 }
 .publication-list a::after {
   content: "";
