@@ -1,3 +1,20 @@
+:root {
+    --primary: #879BAF;
+    --dark: #5e727a;
+}
+
+hr {
+    color: var(--primary);
+}
+
+a {
+    color: var(--dark);
+}
+
+section {
+    border-color: var(--primary);
+}
+
 #info-box{
     display: flex;
     justify-content: space-evenly;
@@ -13,13 +30,26 @@
     list-style-type: none;
     padding: 0.25rem;
 }
+#profile h1 {
+    margin: 0;
+    padding: 0;
+}
 
 #summary {
-    max-width: 500px;
+    max-width: 700px;
 }
 
 #summary li{
     padding: 0.25rem;
+}
+
+.separator {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1em;
+}
+.separator div {
+    margin: 1em;
 }
 
 #headshot {
@@ -29,4 +59,15 @@
 
 .publication-list li{
     padding: 0.25rem;
+}
+
+.publication-list .extra{
+    display: none;
+}
+.publication-list a {
+    font-weight: bold;
+}
+.publication-list a::after {
+  content: "";
+  display: block;
 }
