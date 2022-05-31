@@ -5,14 +5,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>PheWAS-SensR</title>
-        <meta name="description" content="Phenome-Wide Association Study of Actigraphy in the UK Biobank">
+        <title>Temperature Rhythm Atlas</title>
+        <meta name="description" content="Temperature Rhythm Atlas of wrist-worn temperature sensors in the UK Biobank by disease phenotypes">
         <meta name="author" content="Thomas G. Brooks">
 
-        <meta property="og:title" content="Phenome-Wide Associations Study of Actigraphy in the UK Biobank">
+        <meta property="og:title" content="Temperature Rhythm Atlas">
         <meta property="og:type" content="website">
         <meta property="og:url" content="https://tgbrooks.github.io">
-        <meta property="og:description" content="Thomas Brooks's GitHub pages web page">
+        <meta property="og:description" content="Temperture Rhythm Atlas of wrist-worn temperature sensors in the UK Biobank by disease phenotypes">
         <!-- <meta property="og:image" content="image.png"> -->
 
         <!--
@@ -32,7 +32,7 @@
 
     <body>
         <div id="content">
-            <h1>PheWAS-SensR</h1>
+            <h1>Temperature Rhythm Atlas</h1>
 
             <section>
                 <h2> Paper </h2>
@@ -49,7 +49,9 @@
             <section>
                 <h2> Abstract </h2>
                 <p>
-                    TODO ... 
+                    Approximately 100,000 participants in the UK Biobank wore week-long actigraphy devices.
+                    Temperature readings from these show strong diurnal variation.
+                    A phenome-wide scan by Cox proportional hazards models finds that participants' amplitude of temperature rhythm predict their future diagnoses with many diseases.
                 </p>
             </section>
 
@@ -72,12 +74,6 @@
 
                     <v-select :options="phecodes" v-model="phenotype" :clearable="false">
                     </v-select>
-                    <!-- <select name="phenotype" v-model:value="phenotype" id="phenotype_select">
-                        <option v-for="phecode in phecodes" v-bind:value="phecode" v-bind:key="phecode">
-                            {{phecode}}
-                        </option >
-                    </select>
-                    -->
 
                     <div v-if="phenotype_results !== null">
                         <h3> {{phenotype}} </h3>
