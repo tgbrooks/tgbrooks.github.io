@@ -27,132 +27,148 @@
     </head>
 
     <body>
-        <div id="info-box">
-            <div id="profile">
-                <img src="figures/personal/headshot.jpg" id="headshot"></img>
-                <h1> Thomas G. Brooks </h1>
-                <hr>
-                <ul>
-                    <li>Postdoctoral Researcher</li>
-                    <li>ITMAT Bioinformatics Lab</li>
-                    <li>Institute for Translational Medicine and Therapeutics</li>
-                    <li>University of Pennsylvania</li>
-                </ul>
-            </div>
-            <div id="summary">
-                <p>
-                    I'm a postdoc at the ITMAT Bioinformatics lab.
-                    I study transcriptomics and RNA-seq methodology, circadian biology and diurnal rhythms.
-                    Previously, I studied Riemannian geometry.
-                </p>
-
-                <div class="separator">
-                    <div>
-                        <h2>Research Interests</h2>
-                        <ul>
-                            <li> Transcriptomics, RNA-seq </li>
-                            <li> Diurnal rhythms </li>
-                            <li> Circadian biology </li>
-                            <li> Methods development and benchmarking </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h2>Education</h2>
-                        <ul>
-                            <li> PhD in mathematics, 2013-2018. University of Pennsylvania </li>
-                            <li> BA in mathematics, 2009-2013. Cornell University </li>
-                        </ul>
-                    </div>
-                </div>
-
-
+        <div id="navbar">
+            <div id="navbar-content">
+                <a href="#profile">Profile</a>
+                <a href="#projects">Projects</a>
+                <a href="#publications">Publications</a>
+                <a href="#preprints">Pre-prints</a>
             </div>
         </div>
-        <section>
-            <h2> Research Areas </h2>
 
-            <h3> RNA-Seq </h3>
-            <p>
-                RNA-seq is a foundational technology in modern biology, but involves many subtleties that influence data processing.
-                Reads do not correspond one-to-one to input RNA transcripts, but must be aligned, quantified, and normalized to generate results.
-                Each of these steps involves difficulties. Through detailed simulation of the RNA-seq process, including library preparation, we can address  these difficulties and benchmark the performance of analysis methods.
-                <a href="https://github.com/itmat/BEERS2">BEERS2 RNA-seq simulator</a>
-            </p>
+        <div id="content">
+            <div id="info-box">
+                <div id="profile">
+                    <img src="figures/personal/headshot.jpg" id="headshot" alt="Thomas Brooks headshot"></img>
+                    <h1> Thomas G. Brooks </h1>
+                    <hr>
+                    <ul>
+                        <li>Postdoctoral Researcher</li>
+                        <li>ITMAT Bioinformatics Lab</li>
+                        <li>Institute for Translational Medicine and Therapeutics</li>
+                        <li>University of Pennsylvania</li>
+                    </ul>
+                </div>
+                <div id="summary">
+                    <p>
+                        I'm a postdoc at the ITMAT Bioinformatics lab.
+                        I study transcriptomics and RNA-seq methodology, circadian biology and diurnal rhythms.
+                        Previously, I studied Riemannian geometry.
+                    </p>
 
-            <h3> Circadian Biology </h3>
-            <p>
-                Changes throughout the day (diurnal variation) are present in nearly every organism, and persist even when external cues (like the day/night cycle) are removed.
-                Disruptions to these rhythms are implicated in serious disease conditions.
-            </p>
-            <h4> Temperature Rhythms </h4>
-            <p>
-                Skin temperature rhythms mark circadian rhythms in individuals (typically with higher temperatures at night, opposite to the core body temperature rhythms).
-                We use a measurement of wrist temperature that captures this variability in the UK Biobank cohort to show that individuals with poor rhythms end up with substantially worse health outcomes.
-            </p>
-            <p> View our results as an atlas of disease-temperature rhythm associations <a href="phewas_sensr.html">here</a>.
-            <h4> Circadian Transcriptomics </h4>
-            <p>
-                The transcriptome varies dramatically through the day.
-                But these datasets are large and difficult to explore, so we made a web app that makes it easy to view, process, and share timeseries omics datasets.
-                Try it out at <a href="https://nitecap.org">nitecap.org</a>.
-            </p>
-        </section>
+                    <div class="separator">
+                        <div>
+                            <h2>Research Interests</h2>
+                            <ul>
+                                <li> Transcriptomics, RNA-seq </li>
+                                <li> Diurnal rhythms </li>
+                                <li> Circadian biology </li>
+                                <li> Methods development and benchmarking </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h2>Education</h2>
+                            <ul>
+                                <li> PhD in mathematics, 2013-2018. University of Pennsylvania </li>
+                                <li> BA in mathematics, 2009-2013. Cornell University </li>
+                            </ul>
+                        </div>
+                    </div>
 
-        <section>
-            <h2> Publications </h2>
 
-            <ul class="publication-list">
-                <li>
-                    <a href="https://pubmed.ncbi.nlm.nih.gov/35332134/">No increase in inflammation in late-life major depression screened to exclude physical illness.</a>
-                    Luning Prak ET, <strong>Brooks TG</strong>, Makhoul W, Beer JC, Zhao L, Girelli T, Skarke C, Sheline YI.  Transl Psychiatry. 2022 Mar 24;<span class="extra">12(1):118. doi: 10.1038/s41398-022-01883-4. PubMed PMID: 35332134.</span>
-                </li>
-                <li>
-                    <a href="https://pubmed.ncbi.nlm.nih.gov/34724846/">Nitecap: An Exploratory Circadian Analysis Web Application.</a>
-                    <strong>Brooks TG</strong>, Mrcela A, Lahens NF, Paschos GK, Grosser T, Skarke CC, FitzGerald GA, Grant GR.  J Biol Rhythms. 2022 Feb;<span class="extra">37(1):43-52. doi: 10.1177/07487304211054408. Epub 2021 Nov 2. PubMed PMID: 34724846.</span>
-                </li>
-                <li>
-                    <a href="https://pubmed.ncbi.nlm.nih.gov/34563123/">CAMPAREE: a robust and configurable RNA expression simulator.</a>
-                    Lahens* NF, <strong>Brooks* TG</strong>, Sarantopoulou D, Nayak S, Lawrence C, Mrcela A, Srinivasan A, Schug J, Hogenesch JB, Barash Y, Grant GR.  BMC Genomics. 2021 Sep 25;<span class="extra">22(1):692. doi: 10.1186/s12864-021-07934-2. PubMed PMID: 34563123; PubMed Central PMCID: PMC8467241.</span>
-                </li>
-                <li>
-                    <a href="https://pubmed.ncbi.nlm.nih.gov/34034652/">Comparative evaluation of full-length isoform quantification from RNA-Seq.</a>
-                    Sarantopoulou* D, <strong>Brooks* TG</strong>, Nayak S, Mrcela A, Lahens NF, Grant GR.  BMC Bioinformatics. 2021 May 25;<span class="extra">22(1):266. PubMed PMID: 34034652.</span>
-                </li>
-                <li>
-                    <a href="https://pubmed.ncbi.nlm.nih.gov/33650487/">Loss of circadian protection against influenza infection in adult mice exposed to hyperoxia as neonates.</a>
-                    Issah Y, Naik A, Tang SY, Forrest K, <strong>Brooks TG</strong>, Lahens N, Theken KN, Mermigos M, Sehgal A, Worthen GS, FitzGerald GA, Sengupta S.  Elife. 2021 Mar 2;<span class="extra">10. doi: 10.7554/eLife.61241. PubMed PMID: 33650487.</span>
-                </li>
-                <li>
-                    <a href="https://pubmed.ncbi.nlm.nih.gov/32875944/">Accounting for Time: Circadian Rhythms in the Time of COVID-19.</a>
-                    Sengupta S, <strong>Brooks TG</strong>, Grant GR, FitzGerald GA.  J Biol Rhythms. 2021 Feb;<span class="extra">36(1):4-8. doi: 10.1177/0748730420953335. Epub 2020 Sep 2. Review. PubMed PMID: 32875944.</span>
-                </li>
-                <li>
-                    <a href="https://link.springer.com/article/10.1007/s10455-019-09678-5">Nonnegative curvature and conullity of the curvature tensor.</a>
-                    <strong>Brooks TG</strong>.  Annals of Global Analysis and Geometry. 2019 August.<span class="extra"> doi: https://doi.org/10.1007/s10455-019-09678-5.</span>
-                </li>
-                <li>
-                    <a href="https://pubmed.ncbi.nlm.nih.gov/30762586/">Targeting MRTF/SRF in CAP2-dependent dilated cardiomyopathy delays disease onset.</a>
-                    Xiong Y, Bedi K, Berritt S, Attipoe BK, <strong>Brooks TG</strong>, Wang K, Margulies KB, Field J.  JCI Insight. 2019 Mar 21;<span class="extra">4(6). doi: 10.1172/jci.insight.124629. eCollection 2019 Mar 21. PubMed PMID: 30762586.</span>
-                </li>
-            </ul>
+                </div>
+            </div>
+            <section>
+                <h2 id="projects"> Projects </h2>
 
-            <p>* indicates equal contributions</p>
-        </section>
+                <h3> RNA-Seq Simulation - BEERS 2 </h3>
+                <div class="project-info">
+                    <p>
+                        RNA-seq is a foundational technology in modern biology, but involves many subtleties that influence data processing.
+                        Reads do not correspond one-to-one to input RNA transcripts, but must be aligned, quantified, and normalized to generate results.
+                        Each of these steps involves difficulties. Through detailed simulation of the RNA-seq process, including library preparation, we can address  these difficulties and benchmark the performance of analysis methods.
+                        <a href="https://github.com/itmat/BEERS2">BEERS2 RNA-seq simulator</a>
+                    </p>
+                    <img  src="figures/personal/BEERS2_coverage.png" alt="simulated RNA-seq coverage" style="width:200px; height:166px;"></a>
+                </div>
 
-        <section>
-            <h2> Pre-prints </h2>
+                <h3> Circadian Biology </h3>
+                <h4> Temperature Rhythms </h4>
+                <div class="project-info">
+                    <p>
+                        Skin temperature rhythms mark circadian rhythms in individuals (typically with higher temperatures at night, opposite to the core body temperature rhythms).
+                        We use a measurement of wrist temperature that captures this variability in the UK Biobank cohort to show that individuals with poor rhythms end up with substantially worse health outcomes.
+                        View our results at the <a href="phewas_sensr.html">Temperature Rhythm Atlas</a>.
+                    </p>
+                    <img src="figures/personal/temp_rhythms.png" alt="temperature rhythm profile" style="width:200px; height:150px;"></img>
+                </div>
+                <h4> Circadian Transcriptomics </h4>
+                <div class="project-info">
+                    <p>
+                        The transcriptome varies dramatically through the day.
+                        But these datasets are large and difficult to explore, so we made a web app that makes it easy to view, process, and share timeseries omics datasets.
+                        Try it out at <a href="https://nitecap.org">nitecap.org</a>.
+                    </p>
+                    <img src="figures/personal/nitecap.png" alt="Nitecap PCA plot example" style="width:166px; height:160px;"></img>
+                </div>
+            </section>
 
-            <ul class="publication-list">
-                <li>
-                    <a href="https://www.medrxiv.org/content/10.1101/2021.12.09.21267558v1">Phenome-Wide Association Study of Actigraphy in the UK Biobank.</a>
-                    <strong>Brooks TG</strong>, Lahens NF, Grant GR, Sheline YI, FitzGerald GA, Skarke C.  medRxiv 2021.12.09.21267558. December 2021.<span class="extra">  doi: 10.1101/2021.12.09.21267558</span>
-                </li>
-                <li>
-                    <a href="https://arxiv.org/abs/2111.15499">3-Manifolds with Constant Ricci Eigenvalues (&lambda;, &lambda;, 0).</a>
-                    <strong>Brooks TG</strong>.  arXiv. November 2021. <span class="extra">doi: 10.48550/arXiv.2111.15499</span>
-                </li>
-            </ul>
-        </section>
+            <section>
+                <h2 id="publications"> Publications </h2>
+
+                <ul class="publication-list">
+                    <li>
+                        <a href="https://pubmed.ncbi.nlm.nih.gov/35332134/">No increase in inflammation in late-life major depression screened to exclude physical illness.</a>
+                        Luning Prak ET, <strong>Brooks TG</strong>, Makhoul W, Beer JC, Zhao L, Girelli T, Skarke C, Sheline YI.  Transl Psychiatry. 2022 Mar <span class="extra">12(1):118. doi: 10.1038/s41398-022-01883-4. PubMed PMID: 35332134.</span>
+                    </li>
+                    <li>
+                        <a href="https://pubmed.ncbi.nlm.nih.gov/34724846/">Nitecap: An Exploratory Circadian Analysis Web Application.</a>
+                        <strong>Brooks TG</strong>, Mrcela A, Lahens NF, Paschos GK, Grosser T, Skarke CC, FitzGerald GA, Grant GR.  J Biol Rhythms. 2022 Feb <span class="extra">37(1):43-52. doi: 10.1177/07487304211054408. Epub 2021 Nov 2. PubMed PMID: 34724846.</span>
+                    </li>
+                    <li>
+                        <a href="https://pubmed.ncbi.nlm.nih.gov/34563123/">CAMPAREE: a robust and configurable RNA expression simulator.</a>
+                        Lahens* NF, <strong>Brooks* TG</strong>, Sarantopoulou D, Nayak S, Lawrence C, Mrcela A, Srinivasan A, Schug J, Hogenesch JB, Barash Y, Grant GR.  BMC Genomics. 2021 Sep <span class="extra">22(1):692. doi: 10.1186/s12864-021-07934-2. PubMed PMID: 34563123; PubMed Central PMCID: PMC8467241.</span>
+                    </li>
+                    <li>
+                        <a href="https://pubmed.ncbi.nlm.nih.gov/34034652/">Comparative evaluation of full-length isoform quantification from RNA-Seq.</a>
+                        Sarantopoulou* D, <strong>Brooks* TG</strong>, Nayak S, Mrcela A, Lahens NF, Grant GR.  BMC Bioinformatics. 2021 May <span class="extra">22(1):266. PubMed PMID: 34034652.</span>
+                    </li>
+                    <li>
+                        <a href="https://pubmed.ncbi.nlm.nih.gov/33650487/">Loss of circadian protection against influenza infection in adult mice exposed to hyperoxia as neonates.</a>
+                        Issah Y, Naik A, Tang SY, Forrest K, <strong>Brooks TG</strong>, Lahens N, Theken KN, Mermigos M, Sehgal A, Worthen GS, FitzGerald GA, Sengupta S.  Elife. 2021 Mar <span class="extra">10. doi: 10.7554/eLife.61241. PubMed PMID: 33650487.</span>
+                    </li>
+                    <li>
+                        <a href="https://pubmed.ncbi.nlm.nih.gov/32875944/">Accounting for Time: Circadian Rhythms in the Time of COVID-19.</a>
+                        Sengupta S, <strong>Brooks TG</strong>, Grant GR, FitzGerald GA.  J Biol Rhythms. 2021 Feb <span class="extra">36(1):4-8. doi: 10.1177/0748730420953335. Epub 2020 Sep 2. Review. PubMed PMID: 32875944.</span>
+                    </li>
+                    <li>
+                        <a href="https://link.springer.com/article/10.1007/s10455-019-09678-5">Nonnegative curvature and conullity of the curvature tensor.</a>
+                        <strong>Brooks TG</strong>.  Annals of Global Analysis and Geometry. 2019 August.<span class="extra"> doi: https://doi.org/10.1007/s10455-019-09678-5.</span>
+                    </li>
+                    <li>
+                        <a href="https://pubmed.ncbi.nlm.nih.gov/30762586/">Targeting MRTF/SRF in CAP2-dependent dilated cardiomyopathy delays disease onset.</a>
+                        Xiong Y, Bedi K, Berritt S, Attipoe BK, <strong>Brooks TG</strong>, Wang K, Margulies KB, Field J.  JCI Insight. 2019 Mar 21 <span class="extra">4(6). doi: 10.1172/jci.insight.124629. eCollection 2019 Mar 21. PubMed PMID: 30762586.</span>
+                    </li>
+                </ul>
+
+                <p>* indicates equal contributions</p>
+            </section>
+
+            <section>
+                <h2 id="preprints"> Pre-prints </h2>
+
+                <ul class="publication-list">
+                    <li>
+                        <a href="https://www.medrxiv.org/content/10.1101/2021.12.09.21267558v1">Phenome-Wide Association Study of Actigraphy in the UK Biobank.</a>
+                        <strong>Brooks TG</strong>, Lahens NF, Grant GR, Sheline YI, FitzGerald GA, Skarke C.  medRxiv 2021.12.09.21267558. December 2021.<span class="extra">  doi: 10.1101/2021.12.09.21267558</span>
+                    </li>
+                    <li>
+                        <a href="https://arxiv.org/abs/2111.15499">3-Manifolds with Constant Ricci Eigenvalues (&lambda;, &lambda;, 0).</a>
+                        <strong>Brooks TG</strong>.  arXiv. November 2021. <span class="extra">doi: 10.48550/arXiv.2111.15499</span>
+                    </li>
+                </ul>
+            </section>
+        </div>
     </body>
 </html>
 

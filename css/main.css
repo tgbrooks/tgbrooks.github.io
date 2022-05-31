@@ -9,10 +9,14 @@ html {
     font-family: 'Helvetica Neue', 'Myriad Pro', 'Segoe UI', Myriad, Helvetica, 'Lucida Grande', 'DejaVu Sans Condensed', 'Liberation Sans', 'Nimbus Sans L', Tahoma, Geneva, Arial, sans-serif;
 }
 
-body {
+#content {
     padding: 1em;
     margin: 0 auto;
     max-width: 1200px;
+}
+
+body {
+    margin: 0;
 }
 
 section {
@@ -58,4 +62,24 @@ td,th {
     width: 440px;
     aspect-ratio: 440/360;
     max-width: 100%
+}
+
+#navbar {
+    background: var(--primary);
+    margin-bottom: 1em;
+}
+
+#navbar-content {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0.5rem;
+}
+
+#navbar a {
+    color: black;
+    font-size: 1.3rem;
+    text-decoration: none;
 }

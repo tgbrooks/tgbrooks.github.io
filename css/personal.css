@@ -1,6 +1,6 @@
 :root {
     --primary: #879BAF;
-    --dark: #5e727a;
+    --dark: #435055;
 }
 
 hr {
@@ -37,7 +37,6 @@ section {
     margin: 0;
     padding: 0;
 }
-
 #summary {
     max-width: 700px;
 }
@@ -59,6 +58,7 @@ section {
 
 #headshot {
     width: 10rem;
+    height: 10rem;
     border-radius: 50%;
 }
 
@@ -75,4 +75,14 @@ section {
 .publication-list a::after {
   content: "";
   display: block;
+}
+
+.project-info {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    min-width:100%;
+}
+.project-info p {
+    flex-grow: 1;
 }
