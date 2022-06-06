@@ -107,7 +107,7 @@ const app = new Vue({
             return this.fmt(num) + " " + this.fmt_range(lower, upper);
         },
         fmt_range: function(lower, upper) {
-            return "(" + this.fmt(lower) + " - " + this.fmt(upper) + ")";
+            return "(" + this.fmt(lower) + " \u2013 " + this.fmt(upper) + ")";
         },
     },
 
