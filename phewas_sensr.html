@@ -188,10 +188,10 @@
                             </span>
                         </div>
                         <p> Note that some subjects may have had multiple ICD10 codes contributing to this PheCODE and so the total of all the ICD10 case counts may not match that of the PheCODE.
-                        <p> Subjects were further excluded based off diagnoses predating the actigraphy measurement. The following records always occur prior to the date of actigraphy measurement and therefore were used for exclusions. </p>
-                        <p> From ICD9 codes, instances were identified from the codes: </p>
+                        <p> Subjects were further excluded based off diagnoses predating the actigraphy measurement. The following diagnosis sources always occur prior to the date of actigraphy measurement and therefore were used for exclusions. </p>
+                        <p> From ICD9 codes, exclusions were identified from the codes: </p>
                         <div class="list">{{phenotype_results.phecode.ICD9_codes.split(";").join(', ')}}</div>
-                        <p> From self-reported conditions during the initial assessment interview, instances were identified from the following conditions:</p>
+                        <p> From self-reported conditions during the initial assessment interview, exclusions were identified from the following conditions:</p>
                         <div class="list">{{phenotype_results.phecode.self_reported_condition_codes.split(';').join(', ')}}. </div>
                         <p> Lastly, subjects were excluded if they had records of any of the following PheCODEs prior to their actigraphy measurement:</p>
                         <div class="list">{{phenotype_results.phecode.controls_excluded_phecode.split(';').join(', ')}}. </div>
