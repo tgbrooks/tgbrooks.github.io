@@ -41,6 +41,7 @@ td,th {
     overflow: auto;
     max-height: 4rem;
     max-width: 600px;
+    margin: 1rem;
 }
 
 [v-cloak] {
