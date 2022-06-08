@@ -5,14 +5,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Temperature Rhythm Atlas</title>
-        <meta name="description" content="Temperature Rhythm Atlas of wrist-worn temperature sensors in the UK Biobank by disease phenotypes">
+        <title>Temperature Biorhythm Atlas</title>
+        <meta name="description" content="Temperature Biorhythm Atlas of wrist-worn temperature sensors in the UK Biobank by disease phenotypes">
         <meta name="author" content="Thomas G. Brooks">
 
-        <meta property="og:title" content="Temperature Rhythm Atlas">
+        <meta property="og:title" content="Temperature Biorhythm Atlas">
         <meta property="og:type" content="website">
-        <meta property="og:url" content="https://tgbrooks.github.io">
-        <meta property="og:description" content="Temperture Rhythm Atlas of wrist-worn temperature sensors in the UK Biobank by disease phenotypes">
+        <meta property="og:url" content="bioinf.itmat.upenn.edu/biorhythm_atlas">
+        <meta property="og:description" content="Temperture Biorhythm Atlas of wrist-worn temperature sensors in the UK Biobank by disease phenotypes">
         <!-- <meta property="og:image" content="image.png"> -->
 
         <!--
@@ -21,18 +21,21 @@
             <link rel="apple-touch-icon" href="/apple-touch-icon.png">
         -->
 
-        <link rel="stylesheet" href="css/main.css?v=2">
-
-        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js" defer></script>
+        <!-- external content from CDNs -->
+        <script src="https://unpkg.com/vue@2" defer></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js" defer></script> -->
         <script src="https://cdn.plot.ly/plotly-2.8.3.min.js" defer></script>
-        <script src="js/phewas_sensr.js?v=2" defer></script>
         <script src="https://unpkg.com/vue-select@3.0.0"></script> <!-- searchable select box -->
         <link rel="stylesheet" href="https://unpkg.com/vue-select@3.0.0/dist/vue-select.css">
+
+        <!-- our content -->
+        <link rel="stylesheet" href="css/main.css?v=2">
+        <script src="js/biorhythms.js?v=2" defer></script>
     </head>
 
     <body>
         <div id="content">
-            <h1>Temperature Rhythm Atlas</h1>
+            <h1>Temperature Biorhythm Atlas</h1>
 
             <section>
                 <h2> Paper </h2>
@@ -49,9 +52,12 @@
             <section>
                 <h2> Abstract </h2>
                 <p>
-                    Approximately 100,000 participants in the UK Biobank wore week-long actigraphy devices.
-                    Temperature readings from these show strong diurnal variation.
-                    A phenome-wide scan by Cox proportional hazards models finds that participants' amplitude of temperature rhythm predict their future diagnoses with many diseases.
+                    Using data from 82,412 participants in the UK Biobank, robustness of diurnal rhythms was captured by diurnal changes in wrist temperature, as measured during one week of actigraphy.
+                    Rhythm amplitude was prospectively associated to a phenome-wide scan of diagnoses in Cox proportional hazard models.
+                </p>
+                <p>
+                    Chronic diseases, such as type 2 diabetes and hypertension, are diagnosed at substantial higher incidences in subjects with weaker circadian rhythms of wrist temperature.
+                    The phenome-wide scan establishes a comprehensive, disease-specific repository for clinicians, researchers, and the public to make these data actionable for individualized approaches of disease risk management.
                 </p>
             </section>
 
