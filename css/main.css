@@ -83,4 +83,11 @@ td,th {
     color: black;
     font-size: 1.3rem;
     text-decoration: none;
+    border-style: solid;
+    border-width: 0px 0px 3px 0px;
+    border-color: #00000000;
+}
+#navbar a:hover {
+    border-style: solid;
+    border-color: #000000FF;
 }
