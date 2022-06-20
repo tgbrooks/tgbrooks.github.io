@@ -56,7 +56,18 @@ const app = new Vue({
             .then(function(json){
                 app.predictive_tests = json;
                 app.phecodes = Object.keys(json);
-                app.phecodes.sort();
+                app.phecodes.sort(function (a,b) {
+                    // Sort alphabetically ignoring case
+                    a = a.toLowerCase();
+                    b = b.toLowerCase();
+                    if (a < b) {
+                        return  -1;
+                    } else if (a > b) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                });
             });
         fetch("data/predictive_tests_by_sex.cox.json")
             .then(response => response.json())
