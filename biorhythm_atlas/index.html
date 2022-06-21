@@ -51,13 +51,25 @@
 
             <section>
                 <h2> Abstract </h2>
+                <h3>Background</h3>
                 <p>
-                    Using data from 82,412 participants in the UK Biobank, robustness of diurnal rhythms was captured by diurnal changes in wrist temperature, as measured during one week of actigraphy.
-                    Rhythm amplitude was prospectively associated to a phenome-wide scan of diagnoses in Cox proportional hazard models.
+                    Many chronic diseases are associated with disrupted biorhythms.
+                    The UK Biobank (UKB) allows exploration of rhythmic organization in acceleration and temperature data collected through a wrist-worn device.
+                    An open question is the clinical relevance of the wrist temperature data sampled under the noisy conditions of the participants' daily lives.
                 </p>
+                <h3>Methods</h3>
                 <p>
-                    Chronic diseases, such as type 2 diabetes and hypertension, are diagnosed at substantial higher incidences in subjects with weaker circadian rhythms of wrist temperature.
-                    The phenome-wide scan establishes a comprehensive, disease-specific repository for clinicians, researchers, and the public to make these data actionable for individualized approaches of disease risk management.
+                    Diurnal variability of wrist temperature in the UKB study was quantified in 82,412 participants who, at the time of wearable assessment, had no record of disease diagnosis.
+                    This allowed us prospectively to associate the temperature biorhythm amplitude to a phenome-wide scan of diagnoses in Cox proportional hazard models.
+                </p>
+                <h3>Results</h3>
+                <p>
+                    A decreased (dampened) wrist temperature amplitude was found to be a powerful predictor of future diseases: A two standard deviation (1.8&deg; Celsius) lower wrist temperature amplitude corresponded to hazard ratios of 2.09 (1.72-2.55 95% CI) in nonalcoholic fatty liver disease (NAFLD), 1.65 (1.47-1.84) in type 2 diabetes, 1.25 (1.19-1.32) in hypertension, 1.24 (1.13-1.36) in renal failure, and 1.23 (1.12-1.35) in pneumonia.
+                </p>
+                <h3>Conclusions</h3>
+                <p>
+                    We established strong associations between the loss of wrist temperature biorhythms and future disease diagnoses, suggesting peripheral thermoregulation as a prospective biomarker.
+                    The phenome-wide scan offers a comprehensive, disease-specific repository for clinicians, researchers, and the public to make these data actionable for individualized approaches to disease risk management.
                 </p>
             </section>
 
@@ -67,14 +79,12 @@
                     <p>
                         Phenotypes were categorized according to <a href="https://phewascatalog.org/phecodes">PheCODE v1.2</a>.
                         Select a phenotype below to explore selected results related to the chosen phenotype; see paper for full methods and supplemental data for full results.
-                        Top actigraphy-associated phenotypes include
-                        <a href="#results" v-on:click="phenotype = 'Diabetes mellitus'">diabetes mellitus</a>,
+                        Top temperature rhythm associated phenotypes include
+                        <a href="#results" v-on:click="phenotype = 'other chronic nonalcoholic liver disease'">NAFLD</a>,
+                        <a href="#results" v-on:click="phenotype = 'Type 2 diabetes'">type 2 diabetes</a>,
                         <a href="#results" v-on:click="phenotype = 'Hypertension'">hypertension</a>,
-                        <a href="#results" v-on:click="phenotype = 'Renal failure'">renal failure</a>,
-                        <a href="#results" v-on:click="phenotype = 'Chronic airway obstruction'">chronic airway obstruction</a>,
-                        <a href="#results" v-on:click="phenotype = 'Pneumonia'">pneumonia</a>,
-                        <a href="#results" v-on:click="phenotype = 'Anxiety disorders'">anxiety disorders</a>, and
-                        <a href="#results" v-on:click="phenotype = 'Disorders of lipoid metabolism'">disorders of lipoid metabolism</a>.
+                        <a href="#results" v-on:click="phenotype = 'Renal failure'">renal failure</a>, and
+                        <a href="#results" v-on:click="phenotype = 'Pneumonia'">pneumonia</a>.
                     </p>
 
 
