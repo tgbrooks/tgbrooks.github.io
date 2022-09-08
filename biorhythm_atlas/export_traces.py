@@ -13,7 +13,7 @@ import pylab
 COHORT = 0
 
 
-data_dir = pathlib.Path("../longitudinal/cohort0/").resolve()
+data_dir = pathlib.Path("../results/longitudinal/cohort0/").resolve()
 fig_dir = (data_dir/ "figures/").resolve()
 fig_dir.mkdir(exist_ok=True)
 temp_out_dir = (fig_dir/ "temp/").resolve()

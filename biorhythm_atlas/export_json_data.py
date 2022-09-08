@@ -8,7 +8,7 @@ import json
 
 import pandas
 
-data_dir = pathlib.Path("../data/ukbb/longitudinal/cohort0/")
+data_dir = pathlib.Path("../../data/ukbb/results/longitudinal/cohort0/")
 out_dir = pathlib.Path("data/")
 
 

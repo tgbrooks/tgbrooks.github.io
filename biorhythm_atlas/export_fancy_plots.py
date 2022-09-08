@@ -11,13 +11,14 @@ import pylab
 COHORT = 0
 
 
-data_dir = pathlib.Path("../data/ukbb/longitudinal/cohort0/").resolve()
+data_dir = pathlib.Path("../../data/ukbb/results/longitudinal/cohort0/").resolve()
 fig_dir = pathlib.Path("figures/").resolve()
 fig_dir.mkdir(exist_ok=True)
 out_dir = (fig_dir/ "fancy/").resolve()
 out_dir.mkdir(exist_ok=True)
 
-os.chdir("../data/ukbb/scripts")
+os.chdir("../../data/ukbb/scripts")
+print(list(pathlib.Path(".").glob("*")))
 import phewas_preprocess
 import longitudinal_diagnoses
 from longitudinal_analysis import fancy_case_control_plot
