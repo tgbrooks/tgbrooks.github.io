@@ -5,7 +5,7 @@ Vue.component('v-select', VueSelect.VueSelect);
 const app = new Vue({
     el: "#app",
     data: {
-        phenotype: "Diabetes mellitus",
+        phenotype: "Type 2 diabetes",
         phecodes: [],
         predictive_tests: null,
         phecode_details: null,
