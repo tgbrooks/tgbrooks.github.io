@@ -26,13 +26,16 @@ acc_out_dir.mkdir(exist_ok=True)
 import phewas_preprocess
 import day_plots
 import longitudinal_diagnoses
+import longitudinal_statistics
 
 #### Load and preprocess the underlying data
 data, ukbb, activity, activity_summary, activity_summary_seasonal, activity_variables, activity_variance, full_activity = phewas_preprocess.load_data(COHORT)
-selected_ids = data.index
 actigraphy_start_date = pandas.Series(data.index.map(pandas.to_datetime(activity_summary['file-startTime'])), index=data.index)
 
-case_status, phecode_info, phecode_details = longitudinal_diagnoses.load_longitudinal_diagnoses(selected_ids, actigraphy_start_date)
+complete_cases = (~data[longitudinal_statistics.COVARIATES + ['age_at_actigraphy', 'temp_amplitude']].isna().any(axis=1))
+complete_case_ids = complete_cases.index[complete_cases]
+
+case_status, phecode_info, phecode_details = longitudinal_diagnoses.load_longitudinal_diagnoses(complete_case_ids, actigraphy_start_date, OUTDIR=data_dir, RECOMPUTE=False)
 
 results = pandas.read_csv(data_dir /"predictive_tests.cox.txt", sep="\t", dtype={"phecode": str})
 phenotypes = results.meaning
