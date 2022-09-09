@@ -150,16 +150,34 @@
                                             <td> {{fmt(Math.exp(-2*phenotype_results.predictive_tests_by_sex.std_female_logHR)*100-100)}}% {{fmt_range(Math.exp(2*(-phenotype_results.predictive_tests_by_sex.std_female_logHR - 1.96*phenotype_results.predictive_tests_by_sex.std_female_logHR_se))*100-100, Math.exp(2*(-phenotype_results.predictive_tests_by_sex.std_female_logHR + 2 * 1.96*phenotype_results.predictive_tests_by_sex.std_female_logHR_se))*100-100)}}</td>
                                         </tr>
                                         <tr v-if="phenotype_results.predictive_tests_by_age !== undefined">
-                                            <td> Under 65</td>
-                                            <td> {{fmt_p(phenotype_results.predictive_tests_by_age.under_65_p)}} </td>
-                                            <td> {{fmt_ci(-phenotype_results.predictive_tests_by_age.under_65_std_logHR, phenotype_results.predictive_tests_by_age.under_65_std_logHR_se)}}</td>
-                                            <td> {{fmt(Math.exp(-2*phenotype_results.predictive_tests_by_age.under_65_std_logHR)*100-100)}}% {{fmt_range(Math.exp(2*(-phenotype_results.predictive_tests_by_age.under_65_std_logHR - 1.96*phenotype_results.predictive_tests_by_age.under_65_std_logHR_se))*100-100, Math.exp(2*(-phenotype_results.predictive_tests_by_age.under_65_std_logHR + 2 * 1.96*phenotype_results.predictive_tests_by_age.under_65_std_logHR_se))*100-100)}}</td>
+                                            <td> Age 40-55</td>
+                                            <td> {{fmt_p(phenotype_results.predictive_tests_by_age['age40-55_p'])}} </td>
+                                            <td> {{fmt_ci(-phenotype_results.predictive_tests_by_age['age40-55_logHR'], phenotype_results.predictive_tests_by_age['age40-55_logHR_se'])}}</td>
+                                            <td> {{fmt(Math.exp(-2*phenotype_results.predictive_tests_by_age['age40-55_logHR'])*100-100)}}% {{fmt_range(Math.exp(2*(-phenotype_results.predictive_tests_by_age['age40-55_logHR'] - 1.96*phenotype_results.predictive_tests_by_age['age40-55_logHR_se']))*100-100, Math.exp(2*(-phenotype_results.predictive_tests_by_age['age40-55_logHR'] + 2 * 1.96*phenotype_results.predictive_tests_by_age['age40-55_logHR_se']))*100-100)}}</td>
                                         </tr>
                                         <tr v-if="phenotype_results.predictive_tests_by_age !== undefined">
-                                            <td> Over 65 </td>
-                                            <td> {{fmt_p(phenotype_results.predictive_tests_by_age.over_65_p)}} </td>
-                                            <td> {{fmt_ci(-phenotype_results.predictive_tests_by_age.over_65_std_logHR, phenotype_results.predictive_tests_by_age.over_65_std_logHR_se)}}</td>
-                                            <td> {{fmt(Math.exp(-2*phenotype_results.predictive_tests_by_age.over_65_std_logHR)*100-100)}}% {{fmt_range(Math.exp(2*(-phenotype_results.predictive_tests_by_age.over_65_std_logHR - 1.96*phenotype_results.predictive_tests_by_age.over_65_std_logHR_se))*100-100, Math.exp(2*(-phenotype_results.predictive_tests_by_age.over_65_std_logHR + 2 * 1.96*phenotype_results.predictive_tests_by_age.over_65_std_logHR_se))*100-100)}}</td>
+                                            <td> Age 55-60</td>
+                                            <td> {{fmt_p(phenotype_results.predictive_tests_by_age['age55-60_p'])}} </td>
+                                            <td> {{fmt_ci(-phenotype_results.predictive_tests_by_age['age55-60_logHR'], phenotype_results.predictive_tests_by_age['age55-60_logHR_se'])}}</td>
+                                            <td> {{fmt(Math.exp(-2*phenotype_results.predictive_tests_by_age['age55-60_logHR'])*100-100)}}% {{fmt_range(Math.exp(2*(-phenotype_results.predictive_tests_by_age['age55-60_logHR'] - 1.96*phenotype_results.predictive_tests_by_age['age55-60_logHR_se']))*100-100, Math.exp(2*(-phenotype_results.predictive_tests_by_age['age55-60_logHR'] + 2 * 1.96*phenotype_results.predictive_tests_by_age['age55-60_logHR_se']))*100-100)}}</td>
+                                        </tr>
+                                        <tr v-if="phenotype_results.predictive_tests_by_age !== undefined">
+                                            <td> Age 60-65</td>
+                                            <td> {{fmt_p(phenotype_results.predictive_tests_by_age['age60-65_p'])}} </td>
+                                            <td> {{fmt_ci(-phenotype_results.predictive_tests_by_age['age60-65_logHR'], phenotype_results.predictive_tests_by_age['age60-65_logHR_se'])}}</td>
+                                            <td> {{fmt(Math.exp(-2*phenotype_results.predictive_tests_by_age['age60-65_logHR'])*100-100)}}% {{fmt_range(Math.exp(2*(-phenotype_results.predictive_tests_by_age['age60-65_logHR'] - 1.96*phenotype_results.predictive_tests_by_age['age60-65_logHR_se']))*100-100, Math.exp(2*(-phenotype_results.predictive_tests_by_age['age60-65_logHR'] + 2 * 1.96*phenotype_results.predictive_tests_by_age['age60-65_logHR_se']))*100-100)}}</td>
+                                        </tr>
+                                        <tr v-if="phenotype_results.predictive_tests_by_age !== undefined">
+                                            <td> Age 65-70</td>
+                                            <td> {{fmt_p(phenotype_results.predictive_tests_by_age['age65-70_p'])}} </td>
+                                            <td> {{fmt_ci(-phenotype_results.predictive_tests_by_age['age65-70_logHR'], phenotype_results.predictive_tests_by_age['age65-70_logHR_se'])}}</td>
+                                            <td> {{fmt(Math.exp(-2*phenotype_results.predictive_tests_by_age['age65-70_logHR'])*100-100)}}% {{fmt_range(Math.exp(2*(-phenotype_results.predictive_tests_by_age['age65-70_logHR'] - 1.96*phenotype_results.predictive_tests_by_age['age65-70_logHR_se']))*100-100, Math.exp(2*(-phenotype_results.predictive_tests_by_age['age65-70_logHR'] + 2 * 1.96*phenotype_results.predictive_tests_by_age['age65-70_logHR_se']))*100-100)}}</td>
+                                        </tr>
+                                        <tr v-if="phenotype_results.predictive_tests_by_age !== undefined">
+                                            <td> Age 70-80</td>
+                                            <td> {{fmt_p(phenotype_results.predictive_tests_by_age['age70-80_p'])}} </td>
+                                            <td> {{fmt_ci(-phenotype_results.predictive_tests_by_age['age70-80_logHR'], phenotype_results.predictive_tests_by_age['age70-80_logHR_se'])}}</td>
+                                            <td> {{fmt(Math.exp(-2*phenotype_results.predictive_tests_by_age['age70-80_logHR'])*100-100)}}% {{fmt_range(Math.exp(2*(-phenotype_results.predictive_tests_by_age['age70-80_logHR'] - 1.96*phenotype_results.predictive_tests_by_age['age70-80_logHR_se']))*100-100, Math.exp(2*(-phenotype_results.predictive_tests_by_age['age70-80_logHR'] + 2 * 1.96*phenotype_results.predictive_tests_by_age['age70-80_logHR_se']))*100-100)}}</td>
                                         </tr>
                                     </table>
                                 </div>
