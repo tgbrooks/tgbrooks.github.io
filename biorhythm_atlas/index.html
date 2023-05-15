@@ -213,7 +213,7 @@
                         <h4> PheCODE Definition</h4>
 
                         <p> Diagnoses of {{phenotype}} were derived from the <a href="https://phewascatalog.org/phecodes">PheCODE</a> {{phenotype_results.phecode.phecode}}. This includes the following sub-PheCODEs:</p>
-                        <div class="list">{{phenotype_results.phecode.phecodes.split(";").join(', ')}}</div>
+                        <div class="list">{{phenotype_results.phecode.Subphecodes.split(";").join(', ')}}</div>
                         <p> From ICD10 codes, diagnoses were identified from the codes (with case counts from each in parentheses):</p>
                         <div class="list">
                             <span v-for="icd10 in phenotype_results.phecode.ICD10_codes.split(';')" v-bind:key='icd10'>
