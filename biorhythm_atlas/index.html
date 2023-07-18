@@ -13,18 +13,9 @@
         <meta property="og:type" content="website">
         <meta property="og:url" content="bioinf.itmat.upenn.edu/biorhythm_atlas">
         <meta property="og:description" content="Temperture Biorhythm Atlas of wrist-worn temperature sensors in the UK Biobank by disease phenotypes">
-        <!-- <meta property="og:image" content="image.png"> -->
-
-        <!--
-            <link rel="icon" href="/favicon.ico">
-            <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-            <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-        -->
 
         <!-- external content from CDNs -->
-        <script src="https://unpkg.com/vue@2" defer></script>
-        <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js" defer></script> -->
-        <script src="https://cdn.plot.ly/plotly-2.8.3.min.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14"></script>
         <script src="https://unpkg.com/vue-select@3.0.0"></script> <!-- searchable select box -->
         <link rel="stylesheet" href="https://unpkg.com/vue-select@3.0.0/dist/vue-select.css">
 
@@ -40,40 +31,27 @@
             <section>
                 <h2> Paper </h2>
                 <p id="citation">
-                     Thomas Brooks, Nicholas Lahens, Gregory Grant et al. <a href="https://www.researchsquare.com/article/rs-2535978/v1">Diurnal rhythmicity of wearable device-measured wrist temperature predicts future disease incidence in the UK Biobank</a>,</br>
+                     <strong><a href="https://www.researchsquare.com/article/rs-2535978/v1">Diurnal rhythms of wrist temperature are associated with future disease risk in the UK Biobank</a></strong>,</br>
+                     Thomas G. Brooks, Nicholas F. Lahens, Gregory R. Grant, Yvette I. Sheline, Garret A. FitzGerald MD, &amp; Carsten Skarke </br>
+                     In press. Nature Communications. </br>
                      15 February 2023, PREPRINT (Version 1) available at Research Square [<a href="https://doi.org/10.21203/rs.3.rs-2535978/v1">https://doi.org/10.21203/rs.3.rs-2535978/v1</a>]
                  </p>
             </section>
 
             <section>
                 <h2> Abstract </h2>
-
-
-                <h3>Background</h3>
                 <p>
-                    Many chronic diseases are associated with disrupted biorhythms.
-                    The UK Biobank (UKB) allows exploration of rhythmic organization in acceleration and temperature data collected through a wrist-worn device.
-                    An open question is the clinical relevance of the wrist temperature data sampled under the noisy conditions of the participants' daily lives.
-                </p>
-                <h3>Methods</h3>
-                <p>
-                    Diurnal variability of wrist temperature in the UKB study was quantified in 91,462 participants who, at the time of wearable assessment, had no record of disease diagnosis.
-                    This allowed us prospectively to associate the temperature biorhythm amplitude to a phenome-wide scan of diagnoses in Cox proportional hazard models.
-                </p>
-                <h3>Results</h3>
-                <p>
-                    A decreased (dampened) wrist temperature amplitude was found to be a powerful predictor of future diseases: A two standard deviation (1.8&deg; Celsius) lower wrist temperature amplitude corresponded to hazard ratios of 1.91 (1.58-2.3195% CI) in NAFLD, 1.69 (1.53-1.88) in type 2 diabetes, 1.25 (1.14-1.37) in renal failure, 1.23 (1.17-1.3) in hypertension, and 1.22 (1.11-1.33) in pneumonia. 
-                </p>
-                <h3>Conclusions</h3>
-                <p>
-                    We established strong associations between the loss of wrist temperature biorhythms and future disease diagnoses, suggesting peripheral thermoregulation as a prospective biomarker.
-                    The phenome-wide scan offers a comprehensive, disease-specific repository for clinicians, researchers, and the public to make these data actionable for individualized approaches to disease risk management.
+                    Many chronic disease symptomatologies involve desynchronized sleep-wake cycles, indicative of disrupted biorhythms.
+                    This can be interrogated using body temperature rhythms, which have circadian as well as sleep-wake behavior/environmental evoked components.
+                    Here, we investigated the association of wrist temperature amplitudes with a future onset of disease in the UK Biobank one year after actigraphy.
+                    Among 425 disease conditions (range n=200-6,728) compared to controls (range n=62,107-91,134), a total of 73 (17%) disease phenotypes were significantly associated with decreased amplitudes of wrist temperature (Benjamini-Hochberg FDR q&lt;0.05) and 26 (6.1%) PheCODEs passed a more stringent significance level (Bonferroni-correction a&lt;0.05). A two-standard deviation (1.8&deg; Celsius) lower wrist temperature amplitude corresponded to hazard ratios of 1.91 (1.58-2.31 95% CI) for NAFLD, 1.69 (1.53-1.88) for type 2 diabetes, 1.25 (1.14-1.37) for renal failure, 1.23 (1.17-1.3) for hypertension, and 1.22 (1.11-1.33) for pneumonia.
+                    This work suggests peripheral thermoregulation as a digital biomarker.
                 </p>
             </section>
 
             <section>
                 <div id="app" v-cloak>
-                    <h2 id="results"> Results </h2>
+                    <h2 id="results"> Phenome-wide Atlas </h2>
                     <p>
                         Phenotypes were categorized according to <a href="https://phewascatalog.org/phecodes">PheCODE v1.2</a>.
                         Select a phenotype below to explore selected results related to the chosen phenotype; see paper for full methods and supplemental data for full results.
@@ -111,11 +89,11 @@
                             Solid curves give median value for the population at that time of day, and shaded regions indicate the middle 50% of the population.
                         </p>
 
-                        <h4> Do diurnal rhythms predict {{phenotype}}?</h4>
+                        <h4> Do diurnal rhythms associate with {{phenotype}}?</h4>
                         <div v-if="phenotype_results.predictive_tests !== undefined">
                             <div style="display: flex; align-items: center; justify-content: space-evenly; flex-wrap: wrap">
                                 <p>
-                                    To determine if diurnal rhythms predict later diagnosis with the phenotypes, the individuals who had no record of the phenotype at the time of actigraphy measurement or up to one year after were selected.
+                                    To determine if diurnal rhythms associate with later diagnosis with the phenotypes, the individuals who had no record of the phenotype at the time of actigraphy measurement or up to one year after were selected.
                                     Among these, diagnosis with the phenotype was modelled through a Cox proportional hazards model with rhythm robustness (wrist temperature amplitude) as a factor.
                                     Effect sizes are expressed in terms of a 1&deg;C decrease  in temperature amplitude.
                                     Results are controlled for age (at the time of actigraphy), sex, Townsend deprivation index, college education, ethnicity, BMI, alcohol use and smoking status.
