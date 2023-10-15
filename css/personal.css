@@ -86,3 +86,7 @@ section {
 .project-info p {
     flex-grow: 1;
 }
+
+#projects h3 {
+    margin: 0em;
+}
