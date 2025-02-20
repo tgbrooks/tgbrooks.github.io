@@ -23,7 +23,7 @@
         <div id="navbar">
             <div id="navbar-content">
                 <a href="#profile">Profile</a>
-                <!-- <a href="#projects">Projects</a> -->
+                <a href="#projects">Projects</a>
                 <a href="#publications">Publications</a>
             </div>
         </div>
@@ -71,50 +71,58 @@
 
                 </div>
             </div>
-            <!--
             <section id="projects">
                 <h2> Projects </h2>
 
-                <h3> <a href="http://bioinf.itmat.upenn.edu/biorhythm_atlas">Temperature Rhythms</a> </h3>
-                <div class="project-info">
-                    <p>
-                        Skin temperature rhythms mark circadian rhythms in individuals, and are typically higher temperatures at night, opposite to the core body temperature rhythms.
-                        We use a measurement of wrist temperature that captures this variability in the UK Biobank cohort to show that individuals with poor rhythms end up with substantially worse health outcomes.
-                        View our results at the <a href="http://bioinf.itmat.upenn.edu/biorhythm_atlas/">Temperature Biorhythm Atlas</a>.
-                    </p>
-                    <a href="http://bioinf.itmat.upenn.edu/biorhythm_atlas/"><img src="figures/personal/temp_rhythms.png" alt="temperature rhythm profile" style="width:200px; height:150px;"></img></a>
-                </div>
+                <div id="project-box">
+                    <div class="project-info">
+                        <h3> <a href="http://bioinf.itmat.upenn.edu/biorhythm_atlas">Biorhythm atlas</a> </h3>
+                        <p>
+                            Rhythms in skin temperature predict disease onset in UK Biobank.
+                        </p>
+                        <a href="http://bioinf.itmat.upenn.edu/biorhythm_atlas/"><img src="figures/personal/temp_rhythms.png" alt="temperature rhythm profile" style="width:200px; height:150px;"></img></a>
+                    </div>
 
-                <h3> <a href="https://nitecap.org">Nitecap - Circadian Omics Webapp </a> </h3>
-                <div class="project-info">
-                    <p>
-                        The transcriptome varies dramatically through the day.
-                        But these datasets are large and difficult to explore, so we made a web app that makes it easy to view, process, and share timeseries omics datasets.
-                        Try it out at <a href="https://nitecap.org">nitecap.org</a>.
-                    </p>
-                    <a href="https://nitecap.org"><img src="figures/personal/nitecap.png" alt="Nitecap PCA plot example" style="width:166px; height:160px;"></img></a>
-                </div>
+                    <div class="project-info">
+                        <h3> <a href="https://nitecap.org">Nitecap</a> </h3>
+                        <p>
+                            Display and explore rhythms in the transcriptome.
+                        </p>
+                        <a href="https://nitecap.org"><img src="figures/personal/nitecap.png" alt="Nitecap PCA plot example" style="width:166px; height:160px;"></img></a>
+                    </div>
 
-                <h3> <a href="https://github.com/itmat/BEERS2">RNA-Seq Simulation - BEERS 2</a> </h3>
-                <div class="project-info">
-                    <p>
-                        RNA-seq is a foundational technology in modern biology, but involves many subtleties that influence data processing.
-                        Reads do not correspond one-to-one to input RNA transcripts, but must be aligned, quantified, and normalized to generate results.
-                        Each of these steps involves difficulties. Through detailed simulation of the RNA-seq process, including library preparation, we can address  these difficulties and benchmark the performance of analysis methods.
-                    </p>
-                    <a href="https://github.com/itmat/BEERS2"><img  src="figures/personal/beers2_coverage.png" alt="simulated RNA-seq coverage" style="width:200px; height:166px;"></a>
-                </div>
+                    <div class="project-info">
+                        <h3> <a href="https://github.com/itmat/BEERS2">BEERS 2</a> </h3>
+                        <p>
+                            Simulator for RNA-seq reads incoporating complex biases.
+                        </p>
+                        <a href="https://github.com/itmat/BEERS2"><img  src="figures/personal/beers2_coverage.png" alt="simulated RNA-seq coverage" style="width:200px; height:166px;"></a>
+                    </div>
 
-                <h3> <a href="https://github.com/tgbrooks/dependent_sim">dependentsimr</a> </h3>
-                <div class="project-info">
-                    <p>
-                        R package to simulate omics data with realistic correlation.
-                        Mimics the top PCA components of a dataset and is almost as simple and fast as generating entirely independent data.
+                    <div class="project-info">
+                        <h3> <a href="https://github.com/tgbrooks/dependentsimr">dependentsimr</a> </h3>
+                        <p>
+                            R package to simulate omics data with realistic correlation.
+                        </p>
+                    </div>
+
+                    <div class="project-info">
+                        <h3> <a href="https://github.com/tgbrooks/corr_reg">CorrReg</a> </h3>
+                        <p>
+                            Python package to regress correlation of two variables as a function of independent variables.
+                        </p>
+                    </div>
+
+                    <div class="project-info">
+                        <h3> <a href="https://github.com/tgbrooks/ribo_remover">Ribo Remover</a> </h3>
+                        <p>
+                            Utility to remove mammalian ribosomal RNA content from FASTQ files.
+                        </p>
+                    </div>
                 </div>
 
                 <p>See more projects on <a href="https://github.com/tgbrooks">my github page</a>.</p>
             </section>
-            -->
 
             <section>
                 <h2 id="publications"> Publications & Preprints</h2>
