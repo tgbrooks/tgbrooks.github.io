@@ -82,12 +82,14 @@ section:has(#publications) {
 }
 
 .project-info {
-    max-width:325px;
+    max-width: max(33.33%, 400px);
+    min-width: min-content;
     border-style: solid;
     border-width: 1 px;
     border-radius: 10px;
     margin: 0.5rem;
     padding: 0.5rem;
+    flex: 1;
 }
 .project-info p {
     flex-grow: 1;
