@@ -112,7 +112,7 @@ section:has(#publications) {
 }
 
 .tag-first::before {
-    content: "First-author";
+    content: "First author";
 }
 .tag-first {
     background: lightgreen;
