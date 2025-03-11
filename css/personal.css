@@ -82,8 +82,8 @@ section:has(#publications) {
 }
 
 .project-info {
-    max-width: max(33.33%, 400px);
-    min-width: min-content;
+    max-width: max(33.33%, 450px);
+    min-width: 300px;
     border-style: solid;
     border-width: 1 px;
     border-radius: 10px;
